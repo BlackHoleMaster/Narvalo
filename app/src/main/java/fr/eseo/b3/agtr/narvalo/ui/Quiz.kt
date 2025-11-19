@@ -19,6 +19,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.eseo.b3.agtr.narvalo.Question.QuizState
 import fr.eseo.b3.agtr.narvalo.Question.QuizViewModel
+import androidx.compose.runtime.collectAsState
+import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
+
 
 enum class Difficulty {
     FACILE, MOYEN, DIFFICILE
@@ -27,11 +30,12 @@ enum class Difficulty {
 @Composable
 fun QuizScreen(
     modifier: Modifier = Modifier,
-    viewModel: QuizViewModel = viewModel()
+    viewModel: QuizViewModel = viewModel(),
+    musicPlayerManager: MusicPlayerManager
 ) {
     var selectedDifficulty by remember { mutableStateOf(Difficulty.MOYEN) }
     var isMusicEnabled by remember { mutableStateOf(true) }
-
+    var isPlaying by remember { mutableStateOf(musicPlayerManager.isPlaying)}
     val quizState by viewModel.quizState.collectAsState()
     val currentQuestionIndex by viewModel.currentQuestionIndex.collectAsState()
     val score by viewModel.score.collectAsState()
@@ -466,5 +470,16 @@ fun MusicToggleButton(
 @Preview(showBackground = true)
 @Composable
 fun QuizScreenPreview() {
-    QuizScreen()
+    // ✅ Mise à jour de l'aperçu pour qu'il compile sans erreur
+    // On ne peut pas créer un vrai MusicPlayerManager ici car il a besoin d'un Context.
+    // On passe donc un manager "factice" (fake) pour la prévisualisation.
+    val fakeMusicPlayerManager = object {
+        fun playLocalMusic(resId: Int, isLooping: Boolean) {}
+        fun stop() {}
+        val isPlaying = false
+    }
+
+    // On crée un composable qui simule la connexion
+    val context = androidx.compose.ui.platform.LocalContext.current
+    QuizScreen(musicPlayerManager = MusicPlayerManager(context))
 }
