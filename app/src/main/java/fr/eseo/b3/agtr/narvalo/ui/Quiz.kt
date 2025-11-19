@@ -1,6 +1,7 @@
 package fr.eseo.b3.agtr.narvalo.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,6 +25,7 @@ import fr.eseo.b3.agtr.narvalo.Question.QuizViewModel
 import androidx.compose.runtime.collectAsState
 import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
 
+import fr.eseo.b3.agtr.narvalo.R
 
 enum class Difficulty {
     FACILE, MOYEN, DIFFICILE
@@ -39,6 +43,14 @@ fun QuizScreen(
     val quizState by viewModel.quizState.collectAsState()
     val currentQuestionIndex by viewModel.currentQuestionIndex.collectAsState()
     val score by viewModel.score.collectAsState()
+    val correctAnswersCount by viewModel.correctAnswersCount.collectAsState()
+
+    // Calculer le multiplicateur de difficulté
+    val difficultyMultiplier = when (selectedDifficulty) {
+        Difficulty.FACILE -> 1
+        Difficulty.MOYEN -> 3
+        Difficulty.DIFFICILE -> 5
+    }
 
     // Charger les questions au démarrage
     LaunchedEffect(selectedDifficulty) {
@@ -53,6 +65,14 @@ fun QuizScreen(
     Box(
         modifier = modifier.fillMaxSize()
     ) {
+        // Image de fond
+        Image(
+            painter = painterResource(id = R.drawable.background_quiz),
+            contentDescription = "Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
         when (val state = quizState) {
             is QuizState.Loading -> {
                 CircularProgressIndicator(
@@ -108,19 +128,37 @@ fun QuizScreen(
                             selectedDifficulty = selectedDifficulty,
                             onDifficultySelected = {
                                 selectedDifficulty = it
-                                viewModel.resetQuiz()
-                            }
+                            },
+                            enabled = quizState !is QuizState.Loading
                         )
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        // Compteur de questions
-                        Text(
-                            text = "${currentQuestionIndex + 1}/${questions.size}",
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
+                        // Compteur de questions et score
+                        Column(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "${currentQuestionIndex + 1}/${questions.size}",
+                                fontSize = 32.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Surface(
+                                color = Color.White.copy(alpha = 0.9f),
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier.padding(horizontal = 16.dp)
+                            ) {
+                                Text(
+                                    text = "Score: $score pts",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                )
+                            }
+                        }
 
                         Spacer(modifier = Modifier.height(24.dp))
 
@@ -141,7 +179,7 @@ fun QuizScreen(
                                 if (!hasAnswered) {
                                     selectedAnswer = answer
                                     hasAnswered = true
-                                    viewModel.answerQuestion(answer, currentQuestion.correctAnswer)
+                                    viewModel.answerQuestion(answer, currentQuestion.correctAnswer, difficultyMultiplier)
                                 }
                             }
                         )
@@ -150,6 +188,7 @@ fun QuizScreen(
                     // Écran de fin de quiz
                     QuizEndScreen(
                         score = score,
+                        correctAnswers = correctAnswersCount,
                         totalQuestions = questions.size,
                         onRestart = {
                             viewModel.resetQuiz()
@@ -183,20 +222,23 @@ fun QuizScreen(
 fun DifficultyBar(
     selectedDifficulty: Difficulty,
     onDifficultySelected: (Difficulty) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(60.dp)
-            .border(BorderStroke(2.dp, Color.Black)),
+            .border(BorderStroke(2.dp, Color.Black))
+            .alpha(0.95f),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         DifficultyButton(
             text = "F",
             isSelected = selectedDifficulty == Difficulty.FACILE,
             onClick = { onDifficultySelected(Difficulty.FACILE) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            enabled = enabled
         )
 
         HorizontalDivider(
@@ -210,7 +252,8 @@ fun DifficultyBar(
             text = "M",
             isSelected = selectedDifficulty == Difficulty.MOYEN,
             onClick = { onDifficultySelected(Difficulty.MOYEN) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            enabled = enabled
         )
 
         HorizontalDivider(
@@ -224,7 +267,8 @@ fun DifficultyBar(
             text = "D",
             isSelected = selectedDifficulty == Difficulty.DIFFICILE,
             onClick = { onDifficultySelected(Difficulty.DIFFICILE) },
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            enabled = enabled
         )
     }
 }
@@ -234,14 +278,18 @@ fun DifficultyButton(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.fillMaxHeight(),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isSelected) Color.LightGray else Color.White,
-            contentColor = Color.Black
+            contentColor = Color.Black,
+            disabledContainerColor = Color.Gray.copy(alpha = 0.5f),
+            disabledContentColor = Color.Black.copy(alpha = 0.5f)
         ),
         shape = RectangleShape
     ) {
@@ -258,19 +306,26 @@ fun QuestionBox(
     question: String,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    Surface(
         modifier = modifier
             .fillMaxWidth()
             .height(200.dp)
             .border(BorderStroke(2.dp, Color.Black)),
-        contentAlignment = Alignment.Center
+        color = Color.White.copy(alpha = 0.95f)
     ) {
-        Text(
-            text = question,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(16.dp)
-        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text(
+                text = question,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     }
 }
 
@@ -350,15 +405,16 @@ fun AnswerButton(
     modifier: Modifier = Modifier
 ) {
     val backgroundColor = when {
-        !hasAnswered -> Color.White
-        isSelected && isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse
-        isSelected && !isCorrect -> Color(0xFFF44336) // Rouge pour la mauvaise réponse
-        else -> Color.White
+        !hasAnswered -> Color.White.copy(alpha = 0.95f)
+        isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse (toujours)
+        isSelected && !isCorrect -> Color(0xFFF44336) // Rouge pour la mauvaise réponse sélectionnée
+        else -> Color.White.copy(alpha = 0.95f)
     }
 
     val textColor = when {
         !hasAnswered -> Color.Black
-        isSelected -> Color.White
+        isCorrect -> Color.White // Texte blanc pour la bonne réponse
+        isSelected && !isCorrect -> Color.White // Texte blanc pour la mauvaise réponse sélectionnée
         else -> Color.Black
     }
 
@@ -400,49 +456,73 @@ fun AnswerButton(
 @Composable
 fun QuizEndScreen(
     score: Int,
+    correctAnswers: Int,
     totalQuestions: Int,
     onRestart: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Surface(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        color = Color.White.copy(alpha = 0.9f),
+        shape = RoundedCornerShape(16.dp)
     ) {
-        Text(
-            text = "Quiz Terminé !",
-            fontSize = 36.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Text(
-            text = "Votre score",
-            fontSize = 24.sp
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "$score / $totalQuestions",
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
-
-        Spacer(modifier = Modifier.height(48.dp))
-
-        Button(
-            onClick = onRestart,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
+        Column(
+            modifier = Modifier.padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Recommencer",
-                fontSize = 20.sp
+                text = "Quiz Terminé !",
+                fontSize = 36.sp,
+                fontWeight = FontWeight.Bold
             )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Score en points
+            Text(
+                text = "Votre score",
+                fontSize = 24.sp
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "$score points",
+                fontSize = 48.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Nombre de bonnes réponses
+            Surface(
+                color = Color(0xFF4CAF50).copy(alpha = 0.2f),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "✓ $correctAnswers / $totalQuestions bonnes réponses",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF2E7D32),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            Button(
+                onClick = onRestart,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                Text(
+                    text = "Recommencer",
+                    fontSize = 20.sp
+                )
+            }
         }
     }
 }
