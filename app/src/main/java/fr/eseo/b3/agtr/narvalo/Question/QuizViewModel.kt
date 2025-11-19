@@ -26,7 +26,11 @@ class QuizViewModel : ViewModel() {
     fun loadQuestions(difficulty: String? = null) {
         viewModelScope.launch {
             try {
+                // Réinitialiser l'état avant de charger de nouvelles questions
+                _currentQuestionIndex.value = 0
+                _score.value = 0
                 _quizState.value = QuizState.Loading
+
                 val response = RetrofitInstance.api.getQuestions(
                     amount = 10,
                     difficulty = difficulty?.lowercase(),
@@ -36,10 +40,16 @@ class QuizViewModel : ViewModel() {
                 if (response.responseCode == 0) {
                     val questions = response.results.map { it.toQuestion() }
                     _quizState.value = QuizState.Success(questions)
-                    _currentQuestionIndex.value = 0
-                    _score.value = 0
                 } else {
-                    _quizState.value = QuizState.Error("Erreur lors du chargement des questions")
+                    val errorMessage = when (response.responseCode) {
+                        1 -> "Pas assez de questions disponibles pour cette difficulté"
+                        2 -> "Paramètres invalides"
+                        3 -> "Token introuvable"
+                        4 -> "Token vide"
+                        5 -> "Trop de requêtes, veuillez patienter quelques secondes"
+                        else -> "Erreur lors du chargement des questions (code: ${response.responseCode})"
+                    }
+                    _quizState.value = QuizState.Error(errorMessage)
                 }
             } catch (e: Exception) {
                 _quizState.value = QuizState.Error("Erreur réseau: ${e.message}")
