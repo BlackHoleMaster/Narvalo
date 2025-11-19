@@ -23,6 +23,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.eseo.b3.agtr.narvalo.Question.QuizState
 import fr.eseo.b3.agtr.narvalo.Question.QuizViewModel
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
 
 import fr.eseo.b3.agtr.narvalo.R
@@ -52,8 +53,14 @@ fun QuizScreen(
         Difficulty.DIFFICILE -> 5
     }
 
+    val musicUrls = mapOf(
+        Difficulty.FACILE to R.raw.c418,
+        Difficulty.MOYEN to R.raw.nightcity,
+        Difficulty.DIFFICILE to R.raw.soulofcinder
+    )
+
     // Charger les questions au démarrage
-    LaunchedEffect(selectedDifficulty) {
+    LaunchedEffect(selectedDifficulty, isPlaying) {
         val difficulty = when (selectedDifficulty) {
             Difficulty.FACILE -> "easy"
             Difficulty.MOYEN -> "medium"
@@ -61,7 +68,19 @@ fun QuizScreen(
         }
         viewModel.loadQuestions(difficulty)
     }
-
+    LaunchedEffect(selectedDifficulty, isPlaying) {
+        if (isPlaying) {
+            // On récupère l'identifiant de la ressource musicale locale
+            val resId = musicUrls[selectedDifficulty]
+            if (resId != null) {
+                // On appelle la méthode pour la musique LOCALE
+                musicPlayerManager.playLocalMusic(resId, isLooping = true)
+            }
+        } else {
+            // Si la musique est désactivée, on l'arrête
+            musicPlayerManager.stop()
+        }
+    }
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -209,8 +228,8 @@ fun QuizScreen(
 
         // Bouton de contrôle de musique en bas à droite
         MusicToggleButton(
-            isMusicEnabled = isMusicEnabled,
-            onToggle = { isMusicEnabled = !isMusicEnabled },
+            isMusicEnabled = isPlaying,
+            onToggle = { isPlaying = !isPlaying }, // On change l'état 'isPlaying'
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
@@ -550,16 +569,7 @@ fun MusicToggleButton(
 @Preview(showBackground = true)
 @Composable
 fun QuizScreenPreview() {
-    // ✅ Mise à jour de l'aperçu pour qu'il compile sans erreur
-    // On ne peut pas créer un vrai MusicPlayerManager ici car il a besoin d'un Context.
-    // On passe donc un manager "factice" (fake) pour la prévisualisation.
-    val fakeMusicPlayerManager = object {
-        fun playLocalMusic(resId: Int, isLooping: Boolean) {}
-        fun stop() {}
-        val isPlaying = false
-    }
-
-    // On crée un composable qui simule la connexion
-    val context = androidx.compose.ui.platform.LocalContext.current
+    // On passe une implémentation "factice" pour que le preview fonctionne sans erreur.
+    val context = LocalContext.current
     QuizScreen(musicPlayerManager = MusicPlayerManager(context))
 }
