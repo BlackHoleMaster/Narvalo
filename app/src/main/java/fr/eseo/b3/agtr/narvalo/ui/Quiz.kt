@@ -39,6 +39,14 @@ fun QuizScreen(
     val quizState by viewModel.quizState.collectAsState()
     val currentQuestionIndex by viewModel.currentQuestionIndex.collectAsState()
     val score by viewModel.score.collectAsState()
+    val correctAnswersCount by viewModel.correctAnswersCount.collectAsState()
+
+    // Calculer le multiplicateur de difficulté
+    val difficultyMultiplier = when (selectedDifficulty) {
+        Difficulty.FACILE -> 1
+        Difficulty.MOYEN -> 3
+        Difficulty.DIFFICILE -> 5
+    }
 
     // Charger les questions au démarrage
     LaunchedEffect(selectedDifficulty) {
@@ -122,13 +130,31 @@ fun QuizScreen(
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        // Compteur de questions
-                        Text(
-                            text = "${currentQuestionIndex + 1}/${questions.size}",
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.align(Alignment.CenterHorizontally)
-                        )
+                        // Compteur de questions et score
+                        Column(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "${currentQuestionIndex + 1}/${questions.size}",
+                                fontSize = 32.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Surface(
+                                color = Color.White.copy(alpha = 0.9f),
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier.padding(horizontal = 16.dp)
+                            ) {
+                                Text(
+                                    text = "Score: $score pts",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                )
+                            }
+                        }
 
                         Spacer(modifier = Modifier.height(24.dp))
 
@@ -149,7 +175,7 @@ fun QuizScreen(
                                 if (!hasAnswered) {
                                     selectedAnswer = answer
                                     hasAnswered = true
-                                    viewModel.answerQuestion(answer, currentQuestion.correctAnswer)
+                                    viewModel.answerQuestion(answer, currentQuestion.correctAnswer, difficultyMultiplier)
                                 }
                             }
                         )
@@ -158,6 +184,7 @@ fun QuizScreen(
                     // Écran de fin de quiz
                     QuizEndScreen(
                         score = score,
+                        correctAnswers = correctAnswersCount,
                         totalQuestions = questions.size,
                         onRestart = {
                             viewModel.resetQuiz()
@@ -375,14 +402,15 @@ fun AnswerButton(
 ) {
     val backgroundColor = when {
         !hasAnswered -> Color.White.copy(alpha = 0.95f)
-        isSelected && isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse
-        isSelected && !isCorrect -> Color(0xFFF44336) // Rouge pour la mauvaise réponse
+        isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse (toujours)
+        isSelected && !isCorrect -> Color(0xFFF44336) // Rouge pour la mauvaise réponse sélectionnée
         else -> Color.White.copy(alpha = 0.95f)
     }
 
     val textColor = when {
         !hasAnswered -> Color.Black
-        isSelected -> Color.White
+        isCorrect -> Color.White // Texte blanc pour la bonne réponse
+        isSelected && !isCorrect -> Color.White // Texte blanc pour la mauvaise réponse sélectionnée
         else -> Color.Black
     }
 
@@ -424,6 +452,7 @@ fun AnswerButton(
 @Composable
 fun QuizEndScreen(
     score: Int,
+    correctAnswers: Int,
     totalQuestions: Int,
     onRestart: () -> Unit,
     modifier: Modifier = Modifier
@@ -438,29 +467,46 @@ fun QuizEndScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-        Text(
-            text = "Quiz Terminé !",
-            fontSize = 36.sp,
-            fontWeight = FontWeight.Bold
-        )
+            Text(
+                text = "Quiz Terminé !",
+                fontSize = 36.sp,
+                fontWeight = FontWeight.Bold
+            )
 
-        Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
-        Text(
-            text = "Votre score",
-            fontSize = 24.sp
-        )
+            // Score en points
+            Text(
+                text = "Votre score",
+                fontSize = 24.sp
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-        Text(
-            text = "$score / $totalQuestions",
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
+            Text(
+                text = "$score points",
+                fontSize = 48.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
 
-        Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Nombre de bonnes réponses
+            Surface(
+                color = Color(0xFF4CAF50).copy(alpha = 0.2f),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "✓ $correctAnswers / $totalQuestions bonnes réponses",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF2E7D32),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(48.dp))
 
             Button(
                 onClick = onRestart,

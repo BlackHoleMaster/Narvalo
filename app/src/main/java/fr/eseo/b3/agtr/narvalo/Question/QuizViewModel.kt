@@ -23,12 +23,16 @@ class QuizViewModel : ViewModel() {
     private val _score = MutableStateFlow(0)
     val score: StateFlow<Int> = _score.asStateFlow()
 
+    private val _correctAnswersCount = MutableStateFlow(0)
+    val correctAnswersCount: StateFlow<Int> = _correctAnswersCount.asStateFlow()
+
     fun loadQuestions(difficulty: String? = null) {
         viewModelScope.launch {
             try {
                 // Réinitialiser l'état avant de charger de nouvelles questions
                 _currentQuestionIndex.value = 0
                 _score.value = 0
+                _correctAnswersCount.value = 0
                 _quizState.value = QuizState.Loading
 
                 val response = RetrofitInstance.api.getQuestions(
@@ -57,9 +61,10 @@ class QuizViewModel : ViewModel() {
         }
     }
 
-    fun answerQuestion(answer: String, correctAnswer: String) {
+    fun answerQuestion(answer: String, correctAnswer: String, difficultyMultiplier: Int) {
         if (answer == correctAnswer) {
-            _score.value += 1
+            _score.value += 100 * difficultyMultiplier
+            _correctAnswersCount.value += 1
         }
     }
 
@@ -70,6 +75,7 @@ class QuizViewModel : ViewModel() {
     fun resetQuiz() {
         _currentQuestionIndex.value = 0
         _score.value = 0
+        _correctAnswersCount.value = 0
     }
 }
 

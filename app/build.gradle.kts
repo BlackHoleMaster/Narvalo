@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "fr.eseo.b3.agtr.narvalo"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "fr.eseo.b3.agtr.narvalo"
