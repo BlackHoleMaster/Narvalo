@@ -1,4 +1,4 @@
-package fr.eseo.b3.agtr.narvalo.ui
+package fr.eseo.b3.agtr.narvalo.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
 
 import fr.eseo.b3.agtr.narvalo.R
+import kotlinx.coroutines.delay
 
 enum class Difficulty {
     FACILE, MOYEN, DIFFICILE
@@ -36,7 +37,8 @@ enum class Difficulty {
 fun QuizScreen(
     modifier: Modifier = Modifier,
     viewModel: QuizViewModel = viewModel(),
-    musicPlayerManager: MusicPlayerManager
+    musicPlayerManager: MusicPlayerManager,
+    onQuizComplete: (Int) -> Unit = {}
 ) {
     var selectedDifficulty by remember { mutableStateOf(Difficulty.MOYEN) }
     var isMusicEnabled by remember { mutableStateOf(true) }
@@ -131,7 +133,7 @@ fun QuizScreen(
                     // Passer automatiquement à la question suivante après un délai
                     LaunchedEffect(hasAnswered) {
                         if (hasAnswered) {
-                            kotlinx.coroutines.delay(1000)
+                            delay(1000)
                             viewModel.nextQuestion()
                         }
                     }
@@ -217,6 +219,9 @@ fun QuizScreen(
                                 Difficulty.DIFFICILE -> "hard"
                             }
                             viewModel.loadQuestions(difficulty)
+                        },
+                        onBackToHome = {
+                            onQuizComplete(score)
                         },
                         modifier = Modifier
                             .fillMaxSize()
@@ -478,6 +483,7 @@ fun QuizEndScreen(
     correctAnswers: Int,
     totalQuestions: Int,
     onRestart: () -> Unit,
+    onBackToHome: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -531,6 +537,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(48.dp))
 
+            // Bouton Recommencer
             Button(
                 onClick = onRestart,
                 modifier = Modifier
@@ -539,6 +546,21 @@ fun QuizEndScreen(
             ) {
                 Text(
                     text = "Recommencer",
+                    fontSize = 20.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Bouton Menu
+            OutlinedButton(
+                onClick = onBackToHome,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                Text(
+                    text = "Menu",
                     fontSize = 20.sp
                 )
             }
@@ -569,6 +591,17 @@ fun MusicToggleButton(
 @Preview(showBackground = true)
 @Composable
 fun QuizScreenPreview() {
+    // ✅ Mise à jour de l'aperçu pour qu'il compile sans erreur
+    // On ne peut pas créer un vrai MusicPlayerManager ici car il a besoin d'un Context.
+    // On passe donc un manager "factice" (fake) pour la prévisualisation.
+    val fakeMusicPlayerManager = object {
+        fun playLocalMusic(resId: Int, isLooping: Boolean) {}
+        fun stop() {}
+        val isPlaying = false
+    }
+
+    // On crée un composable qui simule la connexion
+    val context = LocalContext.current
     // On passe une implémentation "factice" pour que le preview fonctionne sans erreur.
     val context = LocalContext.current
     QuizScreen(musicPlayerManager = MusicPlayerManager(context))
