@@ -24,19 +24,31 @@ import fr.eseo.b3.agtr.narvalo.Question.QuizState
 import fr.eseo.b3.agtr.narvalo.Question.QuizViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModel
 import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
+import androidx.lifecycle.ViewModelProvider
 
 import fr.eseo.b3.agtr.narvalo.R
 import kotlinx.coroutines.delay
 
 enum class Difficulty {
-    FACILE, MOYEN, DIFFICILE
+    FACILE, MOYEN, DIFFICILE, EMILIEN
 }
 
 @Composable
 fun QuizScreen(
     modifier: Modifier = Modifier,
-    viewModel: QuizViewModel = viewModel(),
+    viewModel: QuizViewModel = run {
+        val context = LocalContext.current
+        viewModel(
+            factory = object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    @Suppress("UNCHECKED_CAST")
+                    return QuizViewModel(context) as T
+                }
+            }
+        )
+    },
     musicPlayerManager: MusicPlayerManager,
     onQuizComplete: (Int) -> Unit = {}
 ) {
@@ -53,20 +65,23 @@ fun QuizScreen(
         Difficulty.FACILE -> 1
         Difficulty.MOYEN -> 3
         Difficulty.DIFFICILE -> 5
+        Difficulty.EMILIEN -> 10
     }
 
     val musicUrls = mapOf(
         Difficulty.FACILE to R.raw.c418,
         Difficulty.MOYEN to R.raw.nightcity,
-        Difficulty.DIFFICILE to R.raw.soulofcinder
+        Difficulty.DIFFICILE to R.raw.soulofcinder,
+        Difficulty.EMILIEN to R.raw.the_only_thing_they_fear_is_you
     )
 
     // Charger les questions au démarrage
-    LaunchedEffect(selectedDifficulty, isPlaying) {
+    LaunchedEffect(selectedDifficulty) {
         val difficulty = when (selectedDifficulty) {
             Difficulty.FACILE -> "easy"
             Difficulty.MOYEN -> "medium"
             Difficulty.DIFFICILE -> "hard"
+            Difficulty.EMILIEN -> "emilien"
         }
         viewModel.loadQuestions(difficulty)
     }
@@ -146,6 +161,7 @@ fun QuizScreen(
                     ) {
                         // Barre de difficulté (F, M, D)
                         DifficultyBar(
+                            score = score,
                             selectedDifficulty = selectedDifficulty,
                             onDifficultySelected = {
                                 selectedDifficulty = it
@@ -217,6 +233,7 @@ fun QuizScreen(
                                 Difficulty.FACILE -> "easy"
                                 Difficulty.MOYEN -> "medium"
                                 Difficulty.DIFFICILE -> "hard"
+                                Difficulty.EMILIEN -> "emilien"
                             }
                             viewModel.loadQuestions(difficulty)
                         },
@@ -244,6 +261,7 @@ fun QuizScreen(
 
 @Composable
 fun DifficultyBar(
+    score: Int = 0,
     selectedDifficulty: Difficulty,
     onDifficultySelected: (Difficulty) -> Unit,
     modifier: Modifier = Modifier,
@@ -252,7 +270,7 @@ fun DifficultyBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(50.dp)
             .border(BorderStroke(2.dp, Color.Black))
             .alpha(0.95f),
         horizontalArrangement = Arrangement.SpaceEvenly
@@ -295,6 +313,24 @@ fun DifficultyBar(
             enabled = enabled
         )
     }
+    if (score >= 50) {// Désactivé si le score est inférieur à 5000
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .border(BorderStroke(2.dp, Color.Black))
+                .alpha(0.95f),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            DifficultyButton(
+                text = "EMILIEN",
+                isSelected = selectedDifficulty == Difficulty.EMILIEN,
+                onClick = { onDifficultySelected(Difficulty.EMILIEN) },
+                modifier = Modifier.weight(1f),
+                enabled = true
+            )
+        }
+    }
 }
 
 @Composable
@@ -333,7 +369,7 @@ fun QuestionBox(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .height(180.dp)
             .border(BorderStroke(2.dp, Color.Black)),
         color = Color.White.copy(alpha = 0.95f)
     ) {
@@ -372,17 +408,16 @@ fun AnswersGrid(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             AnswerButton(
-                answer = answers[0],
-                label = "A",
+                answer = "A : " + answers[0],
                 isCorrect = answers[0] == correctAnswer,
                 isSelected = answers[0] == selectedAnswer,
                 hasAnswered = hasAnswered,
                 onClick = { onAnswerSelected(answers[0]) },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+
             )
             AnswerButton(
-                answer = answers[1],
-                label = "B",
+                answer = "B : " + answers[1],
                 isCorrect = answers[1] == correctAnswer,
                 isSelected = answers[1] == selectedAnswer,
                 hasAnswered = hasAnswered,
@@ -397,8 +432,7 @@ fun AnswersGrid(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             AnswerButton(
-                answer = answers[2],
-                label = "C",
+                answer = "C : " + answers[2],
                 isCorrect = answers[2] == correctAnswer,
                 isSelected = answers[2] == selectedAnswer,
                 hasAnswered = hasAnswered,
@@ -406,8 +440,7 @@ fun AnswersGrid(
                 modifier = Modifier.weight(1f)
             )
             AnswerButton(
-                answer = answers[3],
-                label = "D",
+                answer = "D : " + answers[3],
                 isCorrect = answers[3] == correctAnswer,
                 isSelected = answers[3] == selectedAnswer,
                 hasAnswered = hasAnswered,
@@ -421,7 +454,6 @@ fun AnswersGrid(
 @Composable
 fun AnswerButton(
     answer: String,
-    label: String,
     isCorrect: Boolean,
     isSelected: Boolean,
     hasAnswered: Boolean,
@@ -461,12 +493,6 @@ fun AnswerButton(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = label,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = answer,
                 fontSize = 14.sp,
@@ -601,7 +627,6 @@ fun QuizScreenPreview() {
     }
 
     // On crée un composable qui simule la connexion
-    val context = LocalContext.current
     // On passe une implémentation "factice" pour que le preview fonctionne sans erreur.
     val context = LocalContext.current
     QuizScreen(musicPlayerManager = MusicPlayerManager(context))
