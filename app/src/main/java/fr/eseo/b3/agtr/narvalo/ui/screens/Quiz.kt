@@ -29,6 +29,7 @@ import fr.eseo.b3.agtr.narvalo.MusicPlayer.MusicPlayerManager
 import androidx.lifecycle.ViewModelProvider
 
 import fr.eseo.b3.agtr.narvalo.R
+import fr.eseo.b3.agtr.narvalo.data.ScoreManager
 import kotlinx.coroutines.delay
 
 enum class Difficulty {
@@ -59,14 +60,16 @@ fun QuizScreen(
     val currentQuestionIndex by viewModel.currentQuestionIndex.collectAsState()
     val score by viewModel.score.collectAsState()
     val correctAnswersCount by viewModel.correctAnswersCount.collectAsState()
+    val context = LocalContext.current
+    val scoreManager = remember { ScoreManager(context) }
+    val highScore = remember { scoreManager.getHighScore() }
 
     // Calculer le multiplicateur de difficulté
     val difficultyMultiplier = when (selectedDifficulty) {
         Difficulty.FACILE -> 1
         Difficulty.MOYEN -> 3
         Difficulty.DIFFICILE -> 5
-        Difficulty.EMILIEN -> 10
-    }
+        Difficulty.EMILIEN -> 100    }
 
     val musicUrls = mapOf(
         Difficulty.FACILE to R.raw.c418,
@@ -75,187 +78,192 @@ fun QuizScreen(
         Difficulty.EMILIEN to R.raw.the_only_thing_they_fear_is_you
     )
 
-    // Charger les questions au démarrage
-    LaunchedEffect(selectedDifficulty) {
-        val difficulty = when (selectedDifficulty) {
-            Difficulty.FACILE -> "easy"
-            Difficulty.MOYEN -> "medium"
-            Difficulty.DIFFICILE -> "hard"
-            Difficulty.EMILIEN -> "emilien"
-        }
-        viewModel.loadQuestions(difficulty)
-    }
-    LaunchedEffect(selectedDifficulty, isPlaying) {
-        if (isPlaying) {
-            // On récupère l'identifiant de la ressource musicale locale
-            val resId = musicUrls[selectedDifficulty]
-            if (resId != null) {
-                // On appelle la méthode pour la musique LOCALE
-                musicPlayerManager.playLocalMusic(resId, isLooping = true)
-            }
-        } else {
-            // Si la musique est désactivée, on l'arrête
-            musicPlayerManager.stop()
-        }
-    }
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
-        // Image de fond
-        Image(
-            painter = painterResource(id = R.drawable.background_quiz),
-            contentDescription = "Background",
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
+    key(selectedDifficulty) {
 
-        when (val state = quizState) {
-            is QuizState.Loading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
+        // Charger les questions au démarrage
+        LaunchedEffect(selectedDifficulty) {
+            val difficulty = when (selectedDifficulty) {
+                Difficulty.FACILE -> "easy"
+                Difficulty.MOYEN -> "medium"
+                Difficulty.DIFFICILE -> "hard"
+                Difficulty.EMILIEN -> "emilien"
             }
-            is QuizState.Error -> {
-                Column(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = state.message,
-                        color = Color.Red,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(onClick = { viewModel.loadQuestions() }) {
-                        Text("Réessayer")
-                    }
+            viewModel.resetQuiz()
+            viewModel.loadQuestions(difficulty)
+        }
+        LaunchedEffect(selectedDifficulty, isPlaying) {
+            if (isPlaying) {
+                // On récupère l'identifiant de la ressource musicale locale
+                val resId = musicUrls[selectedDifficulty]
+                if (resId != null) {
+                    // On appelle la méthode pour la musique LOCALE
+                    musicPlayerManager.playLocalMusic(resId, isLooping = true)
                 }
+            } else {
+                // Si la musique est désactivée, on l'arrête
+                musicPlayerManager.stop()
             }
-            is QuizState.Success -> {
-                val questions = state.questions
+        }
 
-                if (currentQuestionIndex < questions.size) {
-                    val currentQuestion = questions[currentQuestionIndex]
-                    val answers = remember(currentQuestionIndex) {
-                        currentQuestion.getAllAnswers()
-                    }
+        Box(
+            modifier = modifier.fillMaxSize()
+        ) {
+            // Image de fond
+            Image(
+                painter = painterResource(id = R.drawable.background_quiz),
+                contentDescription = "Background",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
 
-                    var selectedAnswer by remember(currentQuestionIndex) { mutableStateOf<String?>(null) }
-                    var hasAnswered by remember(currentQuestionIndex) { mutableStateOf(false) }
-
-                    // Passer automatiquement à la question suivante après un délai
-                    LaunchedEffect(hasAnswered) {
-                        if (hasAnswered) {
-                            delay(1000)
-                            viewModel.nextQuestion()
-                        }
-                    }
-
+            when (val state = quizState) {
+                is QuizState.Loading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                is QuizState.Error -> {
                     Column(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 80.dp),
-                        verticalArrangement = Arrangement.SpaceBetween
+                            .align(Alignment.Center)
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // Barre de difficulté (F, M, D)
-                        DifficultyBar(
-                            score = score,
-                            selectedDifficulty = selectedDifficulty,
-                            onDifficultySelected = {
-                                selectedDifficulty = it
-                            },
-                            enabled = quizState !is QuizState.Loading
+                        Text(
+                            text = state.message,
+                            color = Color.Red,
+                            textAlign = TextAlign.Center
                         )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(onClick = { viewModel.loadQuestions() }) {
+                            Text("Réessayer")
+                        }
+                    }
+                }
+                is QuizState.Success -> {
+                    val questions = state.questions
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                    if (currentQuestionIndex < questions.size) {
+                        val currentQuestion = questions[currentQuestionIndex]
+                        val answers = remember(currentQuestionIndex) {
+                            currentQuestion.getAllAnswers()
+                        }
 
-                        // Compteur de questions et score
-                        Column(
-                            modifier = Modifier.align(Alignment.CenterHorizontally),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "${currentQuestionIndex + 1}/${questions.size}",
-                                fontSize = 32.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Surface(
-                                color = Color.White.copy(alpha = 0.9f),
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.padding(horizontal = 16.dp)
-                            ) {
-                                Text(
-                                    text = "Score: $score pts",
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                                )
+                        var selectedAnswer by remember(currentQuestionIndex) { mutableStateOf<String?>(null) }
+                        var hasAnswered by remember(currentQuestionIndex) { mutableStateOf(false) }
+
+                        // Passer automatiquement à la question suivante après un délai
+                        LaunchedEffect(hasAnswered) {
+                            if (hasAnswered) {
+                                delay(1000)
+                                viewModel.nextQuestion()
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 80.dp),
+                            verticalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            // Barre de difficulté (F, M, D)
+                            DifficultyBar(
+                                score = highScore,
+                                selectedDifficulty = selectedDifficulty,
+                                onDifficultySelected = {
+                                    selectedDifficulty = it
+                                },
+                                enabled = quizState !is QuizState.Loading
+                            )
 
-                        // Zone de question
-                        QuestionBox(
-                            question = currentQuestion.question
-                        )
+                            Spacer(modifier = Modifier.height(24.dp))
 
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        // Boutons de réponse
-                        AnswersGrid(
-                            answers = answers,
-                            correctAnswer = currentQuestion.correctAnswer,
-                            selectedAnswer = selectedAnswer,
-                            hasAnswered = hasAnswered,
-                            onAnswerSelected = { answer ->
-                                if (!hasAnswered) {
-                                    selectedAnswer = answer
-                                    hasAnswered = true
-                                    viewModel.answerQuestion(answer, currentQuestion.correctAnswer, difficultyMultiplier)
+                            // Compteur de questions et score
+                            Column(
+                                modifier = Modifier.align(Alignment.CenterHorizontally),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "${currentQuestionIndex + 1}/${questions.size}",
+                                    fontSize = 32.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Surface(
+                                    color = Color.White.copy(alpha = 0.9f),
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.padding(horizontal = 16.dp)
+                                ) {
+                                    Text(
+                                        text = "Score: $score pts",
+                                        fontSize = 24.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                    )
                                 }
                             }
+
+                            Spacer(modifier = Modifier.height(24.dp))
+
+                            // Zone de question
+                            QuestionBox(
+                                question = currentQuestion.question
+                            )
+
+                            Spacer(modifier = Modifier.height(24.dp))
+
+                            // Boutons de réponse
+                            AnswersGrid(
+                                answers = answers,
+                                correctAnswer = currentQuestion.correctAnswer,
+                                selectedAnswer = selectedAnswer,
+                                hasAnswered = hasAnswered,
+                                onAnswerSelected = { answer ->
+                                    if (!hasAnswered) {
+                                        selectedAnswer = answer
+                                        hasAnswered = true
+                                        viewModel.answerQuestion(answer, currentQuestion.correctAnswer, difficultyMultiplier)
+                                    }
+                                }
+                            )
+                        }
+                    } else {
+                        // Écran de fin de quiz
+                        QuizEndScreen(
+                            score = score,
+                            correctAnswers = correctAnswersCount,
+                            totalQuestions = questions.size,
+                            onRestart = {
+                                viewModel.resetQuiz()
+                                val difficulty = when (selectedDifficulty) {
+                                    Difficulty.FACILE -> "easy"
+                                    Difficulty.MOYEN -> "medium"
+                                    Difficulty.DIFFICILE -> "hard"
+                                    Difficulty.EMILIEN -> "emilien"
+                                }
+                                viewModel.loadQuestions(difficulty)
+                            },
+                            onBackToHome = {
+                                onQuizComplete(score)
+                            },
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp)
                         )
                     }
-                } else {
-                    // Écran de fin de quiz
-                    QuizEndScreen(
-                        score = score,
-                        correctAnswers = correctAnswersCount,
-                        totalQuestions = questions.size,
-                        onRestart = {
-                            viewModel.resetQuiz()
-                            val difficulty = when (selectedDifficulty) {
-                                Difficulty.FACILE -> "easy"
-                                Difficulty.MOYEN -> "medium"
-                                Difficulty.DIFFICILE -> "hard"
-                                Difficulty.EMILIEN -> "emilien"
-                            }
-                            viewModel.loadQuestions(difficulty)
-                        },
-                        onBackToHome = {
-                            onQuizComplete(score)
-                        },
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    )
                 }
             }
-        }
 
-        // Bouton de contrôle de musique en bas à droite
-        MusicToggleButton(
-            isMusicEnabled = isPlaying,
-            onToggle = { isPlaying = !isPlaying }, // On change l'état 'isPlaying'
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-        )
+            // Bouton de contrôle de musique en bas à droite
+            MusicToggleButton(
+                isMusicEnabled = isPlaying,
+                onToggle = { isPlaying = !isPlaying }, // On change l'état 'isPlaying'
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp)
+            )
+        }
     }
 }
 
@@ -313,7 +321,7 @@ fun DifficultyBar(
             enabled = enabled
         )
     }
-    if (score >= 50) {// Désactivé si le score est inférieur à 5000
+    if (score >= 3000) {// Désactivé si le score est inférieur à 5000
         Row(
             modifier = modifier
                 .fillMaxWidth()
