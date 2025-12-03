@@ -11,7 +11,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,7 +53,6 @@ fun QuizScreen(
     onQuizComplete: (Int) -> Unit = {}
 ) {
     var selectedDifficulty by remember { mutableStateOf(Difficulty.MOYEN) }
-    var isMusicEnabled by remember { mutableStateOf(true) }
     var isPlaying by remember { mutableStateOf(musicPlayerManager.isPlaying)}
     val quizState by viewModel.quizState.collectAsState()
     val currentQuestionIndex by viewModel.currentQuestionIndex.collectAsState()
@@ -62,7 +60,11 @@ fun QuizScreen(
     val correctAnswersCount by viewModel.correctAnswersCount.collectAsState()
     val context = LocalContext.current
     val scoreManager = remember { ScoreManager(context) }
-    val highScore = remember { scoreManager.getHighScore() }
+    // Make high score reactive so the UI updates when ScoreManager changes
+    var highScore by remember { mutableStateOf(scoreManager.getHighScore()) }
+
+    // A simple key to force full UI recomposition when switching difficulty (useful for EMILIEN)
+    var uiRefreshKey by remember { mutableStateOf(0) }
 
     // Calculer le multiplicateur de difficulté
     val difficultyMultiplier = when (selectedDifficulty) {
@@ -78,7 +80,8 @@ fun QuizScreen(
         Difficulty.EMILIEN to R.raw.the_only_thing_they_fear_is_you
     )
 
-    key(selectedDifficulty) {
+    // Wrap the whole quiz in a key that includes uiRefreshKey so we can force a full recomposition
+    key(selectedDifficulty, uiRefreshKey) {
 
         // Charger les questions au démarrage
         LaunchedEffect(selectedDifficulty) {
@@ -170,10 +173,15 @@ fun QuizScreen(
                             DifficultyBar(
                                 score = highScore,
                                 selectedDifficulty = selectedDifficulty,
-                                onDifficultySelected = {
-                                    selectedDifficulty = it
+                                onDifficultySelected = { newDifficulty ->
+                                    // Immediately reset score and answered count in the ViewModel
+                                    viewModel.resetQuiz()
+                                    // Force a full UI refresh when switching difficulty (EMILIEN needs a full refresh)
+                                    uiRefreshKey += 1
+                                    // Finally set the selected difficulty
+                                    selectedDifficulty = newDifficulty
                                 },
-                                enabled = quizState !is QuizState.Loading
+                                enabled = true
                             )
 
                             Spacer(modifier = Modifier.height(24.dp))
@@ -229,6 +237,13 @@ fun QuizScreen(
                             )
                         }
                     } else {
+                        // Mise à jour du high score / last score lorsque le quiz est terminé
+                        LaunchedEffect(key1 = score) {
+                            // Mettre à jour le dernier score et le high score dans ScoreManager
+                            scoreManager.updateLastScore(score)
+                            // Lire la nouvelle valeur de high score
+                            highScore = scoreManager.getHighScore()
+                        }
                         // Écran de fin de quiz
                         QuizEndScreen(
                             score = score,
@@ -269,64 +284,73 @@ fun QuizScreen(
 
 @Composable
 fun DifficultyBar(
+    modifier: Modifier = Modifier,
     score: Int = 0,
     selectedDifficulty: Difficulty,
     onDifficultySelected: (Difficulty) -> Unit,
-    modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    Row(
+    val barShape = RoundedCornerShape(12.dp)
+    Surface(
         modifier = modifier
             .fillMaxWidth()
-            .height(50.dp)
-            .border(BorderStroke(2.dp, Color.Black))
-            .alpha(0.95f),
-        horizontalArrangement = Arrangement.SpaceEvenly
+            .height(50.dp),
+        shape = barShape,
+        color = Color.White.copy(alpha = 0.95f),
+        border = BorderStroke(2.dp, Color.Black)
     ) {
-        DifficultyButton(
-            text = "F",
-            isSelected = selectedDifficulty == Difficulty.FACILE,
-            onClick = { onDifficultySelected(Difficulty.FACILE) },
-            modifier = Modifier.weight(1f),
-            enabled = enabled
-        )
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            DifficultyButton(
+                text = "F",
+                isSelected = selectedDifficulty == Difficulty.FACILE,
+                onClick = { onDifficultySelected(Difficulty.FACILE) },
+                modifier = Modifier.weight(1f),
+                enabled = enabled,
+                useRoundedShape = false
+            )
 
-        HorizontalDivider(
-            modifier = Modifier
-                .width(2.dp)
-                .fillMaxHeight(),
-            color = Color.Black
-        )
+            HorizontalDivider(
+                modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight(),
+                color = Color.Black
+            )
 
-        DifficultyButton(
-            text = "M",
-            isSelected = selectedDifficulty == Difficulty.MOYEN,
-            onClick = { onDifficultySelected(Difficulty.MOYEN) },
-            modifier = Modifier.weight(1f),
-            enabled = enabled
-        )
+            DifficultyButton(
+                text = "M",
+                isSelected = selectedDifficulty == Difficulty.MOYEN,
+                onClick = { onDifficultySelected(Difficulty.MOYEN) },
+                modifier = Modifier.weight(1f),
+                enabled = enabled,
+                useRoundedShape = false
+            )
 
-        HorizontalDivider(
-            modifier = Modifier
-                .width(2.dp)
-                .fillMaxHeight(),
-            color = Color.Black
-        )
+            HorizontalDivider(
+                modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight(),
+                color = Color.Black
+            )
 
-        DifficultyButton(
-            text = "D",
-            isSelected = selectedDifficulty == Difficulty.DIFFICILE,
-            onClick = { onDifficultySelected(Difficulty.DIFFICILE) },
-            modifier = Modifier.weight(1f),
-            enabled = enabled
-        )
+            DifficultyButton(
+                text = "D",
+                isSelected = selectedDifficulty == Difficulty.DIFFICILE,
+                onClick = { onDifficultySelected(Difficulty.DIFFICILE) },
+                modifier = Modifier.weight(1f),
+                enabled = enabled,
+                useRoundedShape = false
+            )
+        }
     }
     if (score >= 3000) {// Désactivé si le score est inférieur à 5000
         Row(
             modifier = modifier
                 .fillMaxWidth()
                 .height(50.dp)
-                .border(BorderStroke(2.dp, Color.Black))
+                .border(BorderStroke(2.dp, Color.Black), shape = barShape)
                 .alpha(0.95f),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -347,19 +371,21 @@ fun DifficultyButton(
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    useRoundedShape: Boolean = true
 ) {
     Button(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier.fillMaxHeight(),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isSelected) Color.LightGray else Color.White,
+            containerColor = if (isSelected) Color.LightGray else Color.Transparent,
             contentColor = Color.Black,
             disabledContainerColor = Color.Gray.copy(alpha = 0.5f),
             disabledContentColor = Color.Black.copy(alpha = 0.5f)
         ),
-        shape = RectangleShape
+        // Use rectangle shape when inside rounded container, rounded when standalone
+        shape = if (useRoundedShape) RoundedCornerShape(12.dp) else androidx.compose.ui.graphics.RectangleShape
     ) {
         Text(
             text = text,
@@ -374,12 +400,14 @@ fun QuestionBox(
     question: String,
     modifier: Modifier = Modifier
 ) {
+    val questionShape = RoundedCornerShape(16.dp)
     Surface(
         modifier = modifier
             .fillMaxWidth()
             .height(180.dp)
-            .border(BorderStroke(2.dp, Color.Black)),
-        color = Color.White.copy(alpha = 0.95f)
+            .border(BorderStroke(2.dp, Color.Black), shape = questionShape),
+        color = Color.White.copy(alpha = 0.95f),
+        shape = questionShape
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -471,30 +499,31 @@ fun AnswerButton(
     val backgroundColor = when {
         !hasAnswered -> Color.White.copy(alpha = 0.95f)
         isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse (toujours)
-        isSelected && !isCorrect -> Color(0xFFF44336) // Rouge pour la mauvaise réponse sélectionnée
+        !isCorrect -> Color(0xFFF44336) // Rouge pour TOUTES les mauvaises réponses quand on a répondu
         else -> Color.White.copy(alpha = 0.95f)
     }
 
     val textColor = when {
         !hasAnswered -> Color.Black
         isCorrect -> Color.White // Texte blanc pour la bonne réponse
-        isSelected && !isCorrect -> Color.White // Texte blanc pour la mauvaise réponse sélectionnée
+        !isCorrect -> Color.White // Texte blanc pour TOUTES les mauvaises réponses
         else -> Color.Black
     }
 
+    val buttonShape = RoundedCornerShape(12.dp)
     Button(
         onClick = onClick,
         enabled = !hasAnswered,
         modifier = modifier
             .height(100.dp)
-            .border(BorderStroke(2.dp, Color.Black)),
+            .border(BorderStroke(2.dp, Color.Black), shape = buttonShape),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
             contentColor = textColor,
             disabledContainerColor = backgroundColor,
             disabledContentColor = textColor
         ),
-        shape = RoundedCornerShape(8.dp),
+        shape = buttonShape,
         contentPadding = PaddingValues(8.dp)
     ) {
         Column(
@@ -513,12 +542,12 @@ fun AnswerButton(
 
 @Composable
 fun QuizEndScreen(
+    modifier: Modifier = Modifier,
     score: Int,
     correctAnswers: Int,
     totalQuestions: Int,
     onRestart: () -> Unit,
-    onBackToHome: () -> Unit = {},
-    modifier: Modifier = Modifier
+    onBackToHome: () -> Unit = {}
 ) {
     Surface(
         modifier = modifier,
@@ -625,17 +654,7 @@ fun MusicToggleButton(
 @Preview(showBackground = true)
 @Composable
 fun QuizScreenPreview() {
-    // ✅ Mise à jour de l'aperçu pour qu'il compile sans erreur
-    // On ne peut pas créer un vrai MusicPlayerManager ici car il a besoin d'un Context.
-    // On passe donc un manager "factice" (fake) pour la prévisualisation.
-    val fakeMusicPlayerManager = object {
-        fun playLocalMusic(resId: Int, isLooping: Boolean) {}
-        fun stop() {}
-        val isPlaying = false
-    }
-
-    // On crée un composable qui simule la connexion
-    // On passe une implémentation "factice" pour que le preview fonctionne sans erreur.
+    // Preview: create a real MusicPlayerManager if possible; keep it simple for preview
     val context = LocalContext.current
     QuizScreen(musicPlayerManager = MusicPlayerManager(context))
 }
