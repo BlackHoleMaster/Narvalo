@@ -1,12 +1,17 @@
 package fr.eseo.b3.agtr.narvalo.ui.screens
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -198,19 +203,7 @@ fun QuizScreen(
                                     fontWeight = FontWeight.Bold
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
-                                Surface(
-                                    color = Color.White.copy(alpha = 0.9f),
-                                    shape = RoundedCornerShape(12.dp),
-                                    modifier = Modifier.padding(horizontal = 16.dp)
-                                ) {
-                                    Text(
-                                        text = "Score: $score pts",
-                                        fontSize = 24.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                                    )
-                                }
+                                AnimatedScore(score = score)
                             }
 
                             Spacer(modifier = Modifier.height(24.dp))
@@ -280,6 +273,35 @@ fun QuizScreen(
                     .padding(16.dp)
             )
         }
+    }
+}
+
+@Composable
+fun AnimatedScore(score: Int) {
+    var animatedScore by remember { mutableIntStateOf(0) }
+
+    LaunchedEffect(score) {
+        animate(
+            initialValue = animatedScore.toFloat(),
+            targetValue = score.toFloat(),
+            animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+        ) { value, _ ->
+            animatedScore = value.toInt()
+        }
+    }
+
+    Surface(
+        color = Color.White.copy(alpha = 0.9f),
+        shape = RoundedCornerShape(12.dp),
+        modifier = Modifier.padding(horizontal = 16.dp)
+    ) {
+        Text(
+            text = "Score: $animatedScore pts",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
     }
 }
 
@@ -408,7 +430,8 @@ fun QuestionBox(
             .height(180.dp)
             .border(BorderStroke(2.dp, Color.Black), shape = questionShape),
         color = Color.White.copy(alpha = 0.95f),
-        shape = questionShape
+        shape = questionShape,
+        shadowElevation = 8.dp
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -497,17 +520,62 @@ fun AnswerButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    var isPressed by remember { mutableStateOf(false) }
+    var shouldShake by remember { mutableStateOf(false) }
+
+    // Collect press state for scale animation
+    LaunchedEffect(interactionSource) {
+        interactionSource.interactions.collect { interaction ->
+            when (interaction) {
+                is PressInteraction.Press -> isPressed = true
+                is PressInteraction.Release -> isPressed = false
+                is PressInteraction.Cancel -> isPressed = false
+            }
+        }
+    }
+
+    // Trigger shake animation for wrong selected answer
+    LaunchedEffect(hasAnswered, isCorrect, isSelected) {
+        if (hasAnswered && !isCorrect && isSelected) {
+            shouldShake = true
+            delay(500)
+            shouldShake = false
+        }
+    }
+
+    // Shake animation
+    val offsetX by animateFloatAsState(
+        targetValue = if (shouldShake) 10f else 0f,
+        animationSpec = repeatable(
+            iterations = 3,
+            animation = tween(50),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "shakeAnimation"
+    )
+
+    // Scale animation on press
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed && !hasAnswered) 0.95f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "scaleAnimation"
+    )
+
     val backgroundColor = when {
         !hasAnswered -> Color.White.copy(alpha = 0.95f)
-        isCorrect -> Color(0xFF4CAF50) // Vert pour la bonne réponse (toujours)
-        !isCorrect -> Color(0xFFF44336) // Rouge pour TOUTES les mauvaises réponses quand on a répondu
+        isCorrect -> Color(0xFF4CAF50)
+        !isCorrect -> Color(0xFFF44336)
         else -> Color.White.copy(alpha = 0.95f)
     }
 
     val textColor = when {
         !hasAnswered -> Color.Black
-        isCorrect -> Color.White // Texte blanc pour la bonne réponse
-        !isCorrect -> Color.White // Texte blanc pour TOUTES les mauvaises réponses
+        isCorrect -> Color.White
+        !isCorrect -> Color.White
         else -> Color.Black
     }
 
@@ -515,8 +583,11 @@ fun AnswerButton(
     Button(
         onClick = onClick,
         enabled = !hasAnswered,
+        interactionSource = interactionSource,
         modifier = modifier
             .height(100.dp)
+            .scale(scale)
+            .offset(x = offsetX.dp)
             .border(BorderStroke(2.dp, Color.Black), shape = buttonShape),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
