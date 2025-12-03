@@ -95,10 +95,6 @@ class MusicPlayerManager(private val context: Context) {
         }
     }
 
-    // La méthode pour le streaming reste disponible si besoin
-    fun playStreamingMusic(url: Int, isLooping: Boolean = true) {
-        // ... (pas besoin de modifier cette méthode)
-    }
 
     // ✅ 5. Modifier la méthode stop() pour abandonner le focus
     fun stop() {
