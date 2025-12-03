@@ -601,7 +601,6 @@ fun QuizScreenPreview() {
     }
 
     // On crée un composable qui simule la connexion
-    val context = LocalContext.current
     // On passe une implémentation "factice" pour que le preview fonctionne sans erreur.
     val context = LocalContext.current
     QuizScreen(musicPlayerManager = MusicPlayerManager(context))
