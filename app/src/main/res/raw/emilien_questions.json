@@ -1,0 +1,1602 @@
+[
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In quantum physics, what is the name of the phenomenon in which an electron passes through a potential barrier even though its energy is lower than the height of the barrier?",
+    "correctAnswer": "Tunnel effect",
+    "incorrectAnswers": ["Quantum diffraction", "State superposition", "Casimir effect"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which chemist created the first systematic classification of acids and bases in 1884?",
+    "correctAnswer": "Arrhenius",
+    "incorrectAnswers": ["Brønsted", "Lewis", "Ostwald"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which is the only amino acid that contains a thiol (-SH) group?",
+    "correctAnswer": "Cysteine",
+    "incorrectAnswers": ["Methionine", "Tyrosine", "Tryptophan"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In which city is the oldest still-operating university in the world located?",
+    "correctAnswer": "Fez",
+    "incorrectAnswers": ["Cairo", "Bologna", "Athens"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the painter of The Death of Marat (1793)?",
+    "correctAnswer": "Jacques-Louis David",
+    "incorrectAnswers": ["Jean Fouquet", "Eugène Delacroix", "Girodet"]
+  },
+  {
+    "category": "Entertainment",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the first full-length animated feature film in the history of cinema?",
+    "correctAnswer": "El Apóstol (1917)",
+    "incorrectAnswers": ["Snow White (Disney, 1937)", "Gertie the Dinosaur (1914)", "Fantasmagorie (1908)"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Roman emperor issued in 212 the edict granting Roman citizenship to all free men of the Empire?",
+    "correctAnswer": "Caracalla",
+    "incorrectAnswers": ["Augustus", "Trajan", "Nero"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Caucasian language has one of the largest consonant inventories in the world (about 80 consonants)?",
+    "correctAnswer": "Abkhaz",
+    "incorrectAnswers": ["Ossetian", "Georgian", "Lezgian"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which physicist discovered X-rays in 1895?",
+    "correctAnswer": "Röntgen",
+    "incorrectAnswers": ["Thomson", "Becquerel", "Hertz"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the highest peak in Africa?",
+    "correctAnswer": "Kilimanjaro",
+    "incorrectAnswers": ["Mount Kenya", "Ras Dashen", "Mount Cameroon"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which molecule is responsible for the blue color of arthropod blood?",
+    "correctAnswer": "Hemocyanin",
+    "incorrectAnswers": ["Hemerythrin", "Chlorocruorin", "Hemovanabin"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Greek philosopher founded the Megarian school?",
+    "correctAnswer": "Euclid of Megara",
+    "incorrectAnswers": ["Zeno of Elea", "Democritus", "Anaxagoras"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country has the largest Exclusive Economic Zone (EEZ) in the world?",
+    "correctAnswer": "France",
+    "incorrectAnswers": ["United States", "Australia", "Russia"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the periodic table, which element has atomic number 74?",
+    "correctAnswer": "Tungsten",
+    "incorrectAnswers": ["Tantalum", "Hafnium", "Lead"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the title of Marcel Proust's novel cycle?",
+    "correctAnswer": "In Search of Lost Time",
+    "incorrectAnswers": ["Les Rougon-Macquart", "La Comédie Humaine", "The Three Musketeers"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which explorer was the first European to reach the Cape of Good Hope?",
+    "correctAnswer": "Bartolomeu Dias",
+    "incorrectAnswers": ["Ferdinand Magellan", "Vasco da Gama", "James Cook"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the formula for Coulomb's law?",
+    "correctAnswer": "F = k q₁q₂ / r²",
+    "incorrectAnswers": ["F = k m₁m₂ / r²", "F = ma", "F = -kx"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the only metal that is liquid at room temperature (excluding alloys)?",
+    "correctAnswer": "Mercury",
+    "incorrectAnswers": ["Gallium", "Cesium", "Sodium"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who composed the unfinished Requiem in 1791?",
+    "correctAnswer": "Mozart",
+    "incorrectAnswers": ["Haydn", "Schubert", "Bach"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the foundational thermodynamics work written by Sadi Carnot in 1824?",
+    "correctAnswer": "Reflections on the Motive Power of Fire",
+    "incorrectAnswers": ["Principia", "Essay on Combustion", "Treatise on Steam Engines"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the oldest known religious text, engraved in Sumerian writing?",
+    "correctAnswer": "The Kesh Hymns",
+    "incorrectAnswers": ["The Cyrus Cylinder", "The Epic of Gilgamesh", "The Laws of Ur-Nammu"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country is the world's largest producer of cobalt?",
+    "correctAnswer": "Democratic Republic of the Congo",
+    "incorrectAnswers": ["Russia", "China", "Australia"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In organic chemistry, which type of reaction corresponds to a bimolecular nucleophilic substitution?",
+    "correctAnswer": "SN2",
+    "incorrectAnswers": ["SN1", "E1", "E2"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which cellular organelle is responsible for protein glycosylation?",
+    "correctAnswer": "Endoplasmic reticulum and Golgi apparatus",
+    "incorrectAnswers": ["Lysosome", "Mitochondrion", "Peroxisome"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which modern country is considered the successor of the Hittite Empire?",
+    "correctAnswer": "Turkey",
+    "incorrectAnswers": ["Armenia", "Egypt", "Iran"]
+  },
+  {
+    "category": "Entertainment",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the film Stalker (1979)?",
+    "correctAnswer": "Andrei Tarkovsky",
+    "incorrectAnswers": ["Eisenstein", "Kurosawa", "Fellini"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the oldest known alphabetic writing system?",
+    "correctAnswer": "Ugaritic alphabet",
+    "incorrectAnswers": ["Greek alphabet", "Phoenician alphabet", "Aramaic alphabet"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which particle mediates the strong nuclear force?",
+    "correctAnswer": "Gluon",
+    "incorrectAnswers": ["Phonon", "Z boson", "Photon"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the highest capital city in the world (internationally recognized administrative capital)?",
+    "correctAnswer": "La Paz",
+    "incorrectAnswers": ["Quito", "Kathmandu", "Thimphu"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote The Name of the Rose (1980)?",
+    "correctAnswer": "Umberto Eco",
+    "incorrectAnswers": ["Gabriel García Márquez", "Italo Calvino", "José Saramago"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which physicist formulated the law of electromagnetic induction?",
+    "correctAnswer": "Faraday",
+    "incorrectAnswers": ["Maxwell", "Ampère", "Dirac"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which people created the first simplified consonantal alphabet, ancestor of Phoenician?",
+    "correctAnswer": "Canaanites",
+    "incorrectAnswers": ["Sumerians", "Assyrians", "Hittites"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematician introduced the concept of sets in 1874?",
+    "correctAnswer": "Georg Cantor",
+    "incorrectAnswers": ["Hilbert", "Gödel", "Leibniz"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the second closest star to the Sun?",
+    "correctAnswer": "Alpha Centauri A",
+    "incorrectAnswers": ["Proxima Centauri", "Alpha Centauri B", "Barnard's Star"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the oldest complete literary text known?",
+    "correctAnswer": "The Epic of Gilgamesh",
+    "incorrectAnswers": ["The Book of the Dead", "The Pyramid Texts", "The Instructions of Shuruppak"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In music, how many sharps are there in the C-sharp major scale?",
+    "correctAnswer": "7",
+    "incorrectAnswers": ["5", "6", "8"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the first artificial satellite in history?",
+    "correctAnswer": "Sputnik 1",
+    "incorrectAnswers": ["Explorer 1", "Vanguard 1", "Luna 2"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the most abundant chemical element in Earth's crust?",
+    "correctAnswer": "Oxygen",
+    "incorrectAnswers": ["Silicon", "Aluminum", "Iron"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which biologist discovered penicillin in 1928?",
+    "correctAnswer": "Alexander Fleming",
+    "incorrectAnswers": ["Pasteur", "Koch", "Jenner"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the treaty signed in 1648 that ended the Thirty Years' War?",
+    "correctAnswer": "Peace of Westphalia",
+    "incorrectAnswers": ["Treaty of Paris", "Treaty of Utrecht", "Peace of Augsburg"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which natural stable element has a double magic number (magic number of both protons AND neutrons)?",
+    "correctAnswer": "Helium-4",
+    "incorrectAnswers": ["Oxygen-16", "Calcium-40", "Lead-208"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Sumerian mythology, what is the name of the guardian demon preventing the dead from returning to the world of the living?",
+    "correctAnswer": "Galla",
+    "incorrectAnswers": ["Pazuzu", "Anzu", "Lamashtu"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematician proved the undecidability of first-order arithmetic in 1931?",
+    "correctAnswer": "Kurt Gödel",
+    "incorrectAnswers": ["Turing", "Church", "Hilbert"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The blue pigment 'Prussian blue,' discovered accidentally around 1706, is chemically:",
+    "correctAnswer": "Fe₄[Fe(CN)₆]₃",
+    "incorrectAnswers": ["CuSO₄", "CoAl₂O₄", "Na₇Al₆Si₉O₃₀"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Presocratic philosopher was the first to assert the conservation of matter ('nothing is lost, nothing is created')?",
+    "correctAnswer": "Melissus of Samos",
+    "incorrectAnswers": ["Democritus", "Anaxagoras", "Empedocles"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which medieval manuscript is one of the rare Celtic texts containing pre-Christian mythological material?",
+    "correctAnswer": "Book of Leinster",
+    "incorrectAnswers": ["Book of Ballymote", "Book of Kells", "Codex Argenteus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Lyman-alpha astronomical transition corresponds to an electronic transition between:",
+    "correctAnswer": "n=2 → n=1",
+    "incorrectAnswers": ["n=3 → n=2", "n=1 → n=2", "n=4 → n=2"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which biologist discovered transposons ('jumping genes')?",
+    "correctAnswer": "Barbara McClintock",
+    "incorrectAnswers": ["Watson", "Crick", "Morgan"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which ancient empire used the Hurrian language as its administrative language?",
+    "correctAnswer": "Kingdom of Mitanni",
+    "incorrectAnswers": ["Hittite Empire", "Akkadian Empire", "Elamite Empire"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which novelist is the only one to have won the Prix Goncourt twice?",
+    "correctAnswer": "Romain Gary",
+    "incorrectAnswers": ["Patrick Modiano", "Michel Tournier", "André Malraux"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which physicist introduced the concept of the Hermitian operator in quantum mechanics?",
+    "correctAnswer": "John von Neumann",
+    "incorrectAnswers": ["Schrödinger", "Dirac", "Heisenberg"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which metal is naturally present in liquid form within Earth's depths (outside experimental conditions)?",
+    "correctAnswer": "Iron",
+    "incorrectAnswers": ["Nickel", "Mercury", "Gold"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which pre-Columbian civilization built the city of Tikal?",
+    "correctAnswer": "Maya",
+    "incorrectAnswers": ["Aztecs", "Incas", "Olmecs"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer invented the twelve-tone (dodecaphonic) technique?",
+    "correctAnswer": "Arnold Schoenberg",
+    "incorrectAnswers": ["Webern", "Debussy", "Stravinsky"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which type of interaction primarily stabilizes the tertiary structure of proteins?",
+    "correctAnswer": "Hydrophobic interactions",
+    "incorrectAnswers": ["C–C covalent bonds", "Hydrogen bonds", "Disulfide bonds"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who discovered the planet Uranus in 1781?",
+    "correctAnswer": "William Herschel",
+    "incorrectAnswers": ["Halley", "Flamsteed", "Cassini"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In ancient Greece, who wrote the treatise On Polygonal Numbers?",
+    "correctAnswer": "Nicomachus of Gerasa",
+    "incorrectAnswers": ["Apollonius", "Diophantus", "Eudoxus"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which ocean contains the longest mid-ocean ridge?",
+    "correctAnswer": "Atlantic",
+    "incorrectAnswers": ["Pacific", "Indian", "Arctic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the main polymer forming fungal cell walls?",
+    "correctAnswer": "Chitin",
+    "incorrectAnswers": ["Cellulose", "Pectin", "Lignin"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the earliest known legal code in human history?",
+    "correctAnswer": "Laws of Ur-Nammu",
+    "incorrectAnswers": ["Code of Hammurabi", "Code of Eshnunna", "Laws of Lipit-Ishtar"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which painter created Girl with a Pearl Earring?",
+    "correctAnswer": "Johannes Vermeer",
+    "incorrectAnswers": ["Rembrandt", "Frans Hals", "Rubens"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is considered the founder of hyperbolic non-Euclidean geometry?",
+    "correctAnswer": "Lobachevsky",
+    "incorrectAnswers": ["Riemann", "Gauss", "Bolyai"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which gas makes up about 95% of Mars' atmosphere?",
+    "correctAnswer": "Carbon dioxide",
+    "incorrectAnswers": ["Nitrogen", "Oxygen", "Argon"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Hittite king signed the peace treaty with Ramses II after the Battle of Kadesh?",
+    "correctAnswer": "Hattusili III",
+    "incorrectAnswers": ["Suppiluliuma I", "Arnuwanda II", "Tudhaliya IV"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the oldest fully vocalized alphabet known?",
+    "correctAnswer": "Masoretic Hebrew",
+    "incorrectAnswers": ["Early Arabic", "Archaic Greek", "Ugaritic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the hypothetical particle associated with cold dark matter?",
+    "correctAnswer": "Axion",
+    "incorrectAnswers": ["Techniton", "Majoron", "Tachyon"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Chinese emperor commissioned the Terracotta Army?",
+    "correctAnswer": "Qin Shi Huang",
+    "incorrectAnswers": ["Han Wudi", "Gaozu", "Yongle"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Noether's theorem links physical symmetries to:",
+    "correctAnswer": "Conservation laws",
+    "incorrectAnswers": ["Mass", "Electric charges", "Fundamental constants"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which Russian writer authored Dead Souls?",
+    "correctAnswer": "Nikolai Gogol",
+    "incorrectAnswers": ["Pushkin", "Tolstoy", "Dostoevsky"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which elementary particle is responsible for beta decay?",
+    "correctAnswer": "W boson",
+    "incorrectAnswers": ["Gluon", "Z boson", "Photon"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Irish megalithic site is older than Stonehenge and the pyramids of Giza?",
+    "correctAnswer": "Newgrange",
+    "incorrectAnswers": ["Knowth", "Tara Hill", "Carrowkeel"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What type of molecule is selenocysteine?",
+    "correctAnswer": "A rare amino acid encoded by a modified stop codon",
+    "incorrectAnswers": ["A standard amino acid", "A lipid", "A modified sugar"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which chemist first formulated the law of multiple proportions?",
+    "correctAnswer": "John Dalton",
+    "incorrectAnswers": ["Proust", "Boyle", "Avogadro"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Babylonian ruler traditionally built the Hanging Gardens?",
+    "correctAnswer": "Nebuchadnezzar II",
+    "incorrectAnswers": ["Hammurabi", "Nabonidus", "Sargon of Akkad"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which galaxy is the most massive in the Local Group?",
+    "correctAnswer": "Andromeda",
+    "incorrectAnswers": ["Milky Way", "Triangulum", "NGC 6822"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Roman emperor established the Dominate, breaking from the Principate?",
+    "correctAnswer": "Diocletian",
+    "incorrectAnswers": ["Trajan", "Hadrian", "Constantine"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which medieval literary cycle contains the stories of King Arthur and the Round Table?",
+    "correctAnswer": "Matter of Britain",
+    "incorrectAnswers": ["Trojan Cycle", "Carolingian Cycle", "Venetian Cycle"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which molecule is the primary absorbing pigment used in photosynthesis?",
+    "correctAnswer": "Chlorophyll a",
+    "incorrectAnswers": ["Chlorophyll b", "Beta-carotene", "Phycocyanin"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Yang–Mills equation belongs to which domain of research?",
+    "correctAnswer": "Gauge field theory",
+    "incorrectAnswers": ["Gravitation", "Nuclear physics", "Quantum thermodynamics"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Maya manuscript is one of the few to have survived Diego de Landa's auto-da-fé?",
+    "correctAnswer": "Dresden Codex",
+    "incorrectAnswers": ["Grolier Codex", "Madrid Codex", "Paris Codex"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Mesopotamian cosmology, what is the name of the primordial ocean surrounding the terrestrial disk?",
+    "correctAnswer": "Abzu",
+    "incorrectAnswers": ["Nammu", "Apsû", "Tiamat"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematical theorem states that a simple dynamical system can produce unpredictable behavior marked by sensitive dependence on initial conditions?",
+    "correctAnswer": "Li–Yorke Theorem",
+    "incorrectAnswers": ["Gödel's Theorem", "Poincaré–Bendixson Theorem", "Banach–Tarski Theorem"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Egyptian text is considered the oldest known medical work?",
+    "correctAnswer": "Edwin Smith Papyrus",
+    "incorrectAnswers": ["Ebers Papyrus", "Kahun Papyrus", "Carlsberg Papyrus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In relativistic quantum mechanics, which equation introduced the concept of antiparticles?",
+    "correctAnswer": "Dirac Equation",
+    "incorrectAnswers": ["Schrödinger Equation", "Klein–Gordon Equation", "Pauli Equation"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which natural satellite in the Solar System has a dense, nitrogen-rich atmosphere similar to Earth's?",
+    "correctAnswer": "Titan",
+    "incorrectAnswers": ["Triton", "Io", "Ganymede"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Hermetic tradition, which treatise is attributed to Hermes Trismegistus as a foundational text?",
+    "correctAnswer": "Corpus Hermeticum",
+    "incorrectAnswers": ["Book of Enoch", "Zohar", "Sefer Yetzirah"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which metal's transmutation was the central focus of medieval alchemical research?",
+    "correctAnswer": "Lead → Gold",
+    "incorrectAnswers": ["Iron → Gold", "Mercury → Silver", "Copper → Platinum"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which protohistoric Central European people left inscriptions in a North-Etruscan alphabet still not fully deciphered?",
+    "correctAnswer": "Raetians",
+    "incorrectAnswers": ["Illyrians", "Thracians", "Scythians"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Banach–Tarski paradox relies on the use of which mathematical axiom?",
+    "correctAnswer": "Axiom of Choice",
+    "incorrectAnswers": ["Axiom of Foundation", "Axiom of Regularity", "Axiom of Replacement"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which undeciphered medieval manuscript features an unknown alphabet and inexplicable botanical illustrations?",
+    "correctAnswer": "Voynich Manuscript",
+    "incorrectAnswers": ["Codex Gigas", "Archimedes Palimpsest", "Rohonc Codex"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which 12th-century Arab philosopher is known as 'the Commentator' of Aristotle?",
+    "correctAnswer": "Averroes",
+    "incorrectAnswers": ["Al-Farabi", "Avicenna", "Al-Kindi"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The fine-structure constant α is approximately equal to:",
+    "correctAnswer": "1/137",
+    "incorrectAnswers": ["1/42", "1/2", "0.007"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Maya codex contains the most accurate astronomical table for Venus?",
+    "correctAnswer": "Dresden Codex",
+    "incorrectAnswers": ["Madrid Codex", "Paris Codex", "Grolier Codex"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematician proved the impossibility of squaring the circle in 1882?",
+    "correctAnswer": "Ferdinand von Lindemann",
+    "incorrectAnswers": ["Hilbert", "Weierstrass", "Cantor"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the Zoroastrian ritual that exposes corpses to natural decomposition?",
+    "correctAnswer": "Dakhma",
+    "incorrectAnswers": ["Suttee", "White Inhumation", "Vahni"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which pre-Socratic philosopher claimed that the universe is composed of an infinite number of worlds?",
+    "correctAnswer": "Democritus",
+    "incorrectAnswers": ["Heraclitus", "Anaximander", "Leucippus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which science studies beetles?",
+    "correctAnswer": "Coleopterology",
+    "incorrectAnswers": ["Hymenopterology", "Lepidopterism", "Myrmecology"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the oldest known Egyptian mathematical text?",
+    "correctAnswer": "Rhind Papyrus",
+    "incorrectAnswers": ["Moscow Papyrus", "Plimpton 322", "Kahun Ostracon"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Gödel's incompleteness theorem shows that:",
+    "correctAnswer": "No sufficiently powerful formal system can be both complete and consistent",
+    "incorrectAnswers": ["Arithmetic is false", "Every consistent system is complete", "All mathematical truths can be proven"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the title of the only book written by Sun Tzu?",
+    "correctAnswer": "The Art of War",
+    "incorrectAnswers": ["Book of Rites", "The Central Classic", "Stratagems of the Kingdoms"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which chemical element has the lowest thermal conductivity of all known solids?",
+    "correctAnswer": "Solid argon",
+    "incorrectAnswers": ["Amorphous silica", "Silica aerogel", "Graphite"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Upanishads, which concept designates the 'deep self' identical with Brahman?",
+    "correctAnswer": "Atman",
+    "incorrectAnswers": ["Samsara", "Maya", "Dharma"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Hittite law code dates from around the 17th century BCE?",
+    "correctAnswer": "Telepinu Code",
+    "incorrectAnswers": ["Hattusili Code", "Ur-Nammu Code", "Sîn-leqi-unninni Code"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which theoretical cosmological object has infinite density and zero radius?",
+    "correctAnswer": "Gravitational singularity",
+    "incorrectAnswers": ["Active galactic nucleus", "Quark star", "White hole"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Scandinavian manuscript is the main source for Norse mythology?",
+    "correctAnswer": "Codex Regius",
+    "incorrectAnswers": ["Grágás", "Skírnismál", "Heimskringla"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Higgs boson gives particles mass through which mechanism?",
+    "correctAnswer": "Brout–Englert–Higgs mechanism",
+    "incorrectAnswers": ["Weak interaction", "CPT symmetry", "Gluonic condensate"]
+  },
+  {
+    "category": "Art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which musical work is considered the longest ever written (over 15 hours)?",
+    "correctAnswer": "Vexations",
+    "incorrectAnswers": ["The Ring Cycle (Wagner)", "Die Soldaten (Zimmermann)", "La Monte Young — The Well-Tuned Piano"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the oldest continuously inhabited city in the world according to archaeological data?",
+    "correctAnswer": "Jericho",
+    "incorrectAnswers": ["Byblos", "Damascus", "Susa"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In linguistics, what term describes regular sound changes affecting related languages?",
+    "correctAnswer": "Sound law",
+    "incorrectAnswers": ["Consonant shift", "Grimm's Law", "Laryngeal"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Schrödinger's cat paradox primarily illustrates:",
+    "correctAnswer": "The quantum measurement problem",
+    "incorrectAnswers": ["Heisenberg uncertainty", "Quantum entanglement", "Decoherence"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country is the only one with a non-quadrilateral national flag?",
+    "correctAnswer": "Nepal",
+    "incorrectAnswers": ["Bhutan", "Vatican City", "Bahamas"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which pre-Columbian civilization used the Mixe–Zoque writing system?",
+    "correctAnswer": "Olmecs",
+    "incorrectAnswers": ["Aztecs", "Totonacs", "Zapotecs"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In molecular biology, which enzyme translates RNA into protein?",
+    "correctAnswer": "Ribosome",
+    "incorrectAnswers": ["RNA polymerase", "Ligase", "Helicase"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which star was the subject of the first stellar spectrum ever taken (in 1863)?",
+    "correctAnswer": "Vega",
+    "incorrectAnswers": ["Sirius", "Alpha Centauri", "Betelgeuse"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which modern philosopher is famous for the statement 'hell is other people'?",
+    "correctAnswer": "Sartre",
+    "incorrectAnswers": ["Camus", "Heidegger", "Nietzsche"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the smallest unit of quantum information?",
+    "correctAnswer": "Qubit",
+    "incorrectAnswers": ["Byte", "Qudit", "Quantum-bit pair"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Greek manuscript contains (fragmentary) notes attributed to Pythagoras on music?",
+    "correctAnswer": "Oxyrhynchus Papyrus",
+    "incorrectAnswers": ["Orestes Papyrus", "Hibeh Papyrus", "Archytas Papyrus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematician introduced the concept of metric space?",
+    "correctAnswer": "Maurice Fréchet",
+    "incorrectAnswers": ["Riemann", "Banach", "Dedekind"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which astrophysical phenomenon produces the 21-cm hydrogen line?",
+    "correctAnswer": "Spin–spin transition",
+    "incorrectAnswers": ["Collisional excitation", "Rydberg ionization", "Lyman-alpha transition"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which ancient empire used the earliest known alphabetic writing system?",
+    "correctAnswer": "Proto-Sinaitic",
+    "incorrectAnswers": ["Akkadian", "Phoenician", "Ugaritic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Zermelo–Fraenkel set theory, which paradoxical set is forbidden specifically to avoid Russell's paradox?",
+    "correctAnswer": "Set of all sets",
+    "incorrectAnswers": ["Banach set", "Grothendieck universe", "Universal set V"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the cosmological scenario in which the Universe may be a metastable false vacuum that could spontaneously 'decay'?",
+    "correctAnswer": "False vacuum catastrophe",
+    "incorrectAnswers": ["Eternal inflation", "Vacuum phase transition", "Big Rip"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which hypothetical Paleolithic language is proposed as a deep ancestor of modern Eurasian families?",
+    "correctAnswer": "Proto-Nostratic",
+    "incorrectAnswers": ["Proto-Dené–Caucasian", "Proto-Trans-Eurasian", "Proto-Boreal"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which apocryphal gospel describes the childhood of Jesus and miracles absent from the canonical texts?",
+    "correctAnswer": "Gospel of Pseudo-Matthew",
+    "incorrectAnswers": ["Gospel of Thomas", "Gospel of the Egyptians", "Gospel of Mary"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Neolithic megalithic site shows precise solstice alignment and predates Stonehenge?",
+    "correctAnswer": "Nabta Playa",
+    "incorrectAnswers": ["Carnac", "Göbekli Tepe", "Callanish"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which non-classical logic allows a statement to be both true and false without causing logical explosion?",
+    "correctAnswer": "Paraconsistency",
+    "incorrectAnswers": ["Intuitionistic logic", "Modal logic", "Fuzzy logic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the paradox in which a particle can appear to cross an infinite barrier instantly in quantum mechanics?",
+    "correctAnswer": "Hartman paradox",
+    "incorrectAnswers": ["Tunneling effect", "Ehrenfest paradox", "Klein paradox"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Gnostic manuscript discovered at Nag Hammadi contains a complex cosmology centered on Sophia?",
+    "correctAnswer": "Pistis Sophia",
+    "incorrectAnswers": ["Hypostasis of the Archons", "Gospel of Truth", "Tripartite Tractate"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which protohistoric Siberian people are associated with still-undeciphered runiform inscriptions?",
+    "correctAnswer": "Yeniseians",
+    "incorrectAnswers": ["Khakas", "Chukchi", "Ancient Turks"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In string theory, which extended object generalizes the notion of a point-like particle?",
+    "correctAnswer": "p-dimensional brane",
+    "incorrectAnswers": ["Tachyon", "Virtual D-brane", "Kaluza vortex"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which apocryphon describes a celestial journey attributed to Paul, sometimes called the 'Apocalypse of Paul'?",
+    "correctAnswer": "Vision of Paul",
+    "incorrectAnswers": ["Ascension of Isaiah", "Shepherd of Hermas", "Apocalypse of Baruch"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which paradox shows that a set can be 'smaller' than one of its subsets?",
+    "correctAnswer": "Galileo's paradox",
+    "incorrectAnswers": ["Vitali paradox", "Banach–Tarski paradox", "Berry paradox"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "At which archaeological site is the oldest known example of early South Arabian writing found?",
+    "correctAnswer": "Raybūn",
+    "incorrectAnswers": ["Marib", "Shabwah", "Qataban"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which physical theory suggests that time could be emergent rather than fundamental?",
+    "correctAnswer": "Holographic theory (AdS/CFT)",
+    "incorrectAnswers": ["M-theory", "Loop quantum gravity", "Supersymmetry"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the Hittite mythological cycle in which a giant serpent steals the king's sovereignty?",
+    "correctAnswer": "Illuyanka",
+    "incorrectAnswers": ["Hedammu", "Kumarbi", "Tarhunt"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which paradox shows that the notion of the 'largest definable natural number' is impossible to define?",
+    "correctAnswer": "Berry paradox",
+    "incorrectAnswers": ["Richard's paradox", "König's paradox", "Burali-Forti paradox"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the earliest known text written in an alphabet of Libyco-Berber origin?",
+    "correctAnswer": "Azib n'Ikkis inscription",
+    "incorrectAnswers": ["Dougga stele", "Tiddis tablets", "Oukaïmedden graffiti"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which theoretical cosmological phenomenon could connect two distant regions of spacetime?",
+    "correctAnswer": "Wormhole",
+    "incorrectAnswers": ["Brane instanton", "Topological transition", "Einstein quantum bridge"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Jewish apocryphal text develops the figure of Azazel within an elaborate angelological framework?",
+    "correctAnswer": "Book of Jubilees",
+    "incorrectAnswers": ["Book of the Watchers", "Apocalypse of Abraham", "Testament of Levi"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Basque paleolinguistics, which word is considered one of the most plausible pre-Indo-European relics?",
+    "correctAnswer": "Ur",
+    "incorrectAnswers": ["Aitz", "Zuri", "Gizon"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which theoretical model proposes that the Universe is a discrete informational network?",
+    "correctAnswer": "Wolfram's cellular automaton model",
+    "incorrectAnswers": ["Bekenstein bound theory", "Twistor theory", "Spin network theory"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which logical paradox is based on the sentence: 'This sentence is false'?",
+    "correctAnswer": "Liar paradox",
+    "incorrectAnswers": ["Hempel's paradox", "Good's paradox", "Newcomb's paradox"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Central Asian protohistoric artifact is considered the earliest example of Turkic writing?",
+    "correctAnswer": "Bugut inscription",
+    "incorrectAnswers": ["Kül Tigin stele", "Yenisei Kirghiz inscriptions", "Tomb of Bilge Kağan"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which theory postulates that spacetime may possess more than four macroscopically compactified dimensions?",
+    "correctAnswer": "Kaluza–Klein theory",
+    "incorrectAnswers": ["M-theory", "AdS/CFT", "N=4 supersymmetry"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Gnostic gospel contains the famous scene of Jesus laughing at the archons?",
+    "correctAnswer": "Gospel of Judas",
+    "incorrectAnswers": ["Gospel of Philip", "Dialogue of the Savior", "Apocalypse of Peter"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which logical object is 'larger' than all ordinals but cannot exist in ZF without contradiction?",
+    "correctAnswer": "Burali–Forti ordinal",
+    "incorrectAnswers": ["Inaccessible cardinal", "Church–Kleene ordinal", "Surreal number ω₁"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Caucasian megalithic site is sometimes called the 'Armenian Stonehenge'?",
+    "correctAnswer": "Karahunj (Zorats Karer)",
+    "incorrectAnswers": ["Aruch", "Shengavit", "Metsamor"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which quantum gravity hypothesis states that spacetime is granular at the Planck scale?",
+    "correctAnswer": "Loop quantum gravity",
+    "incorrectAnswers": ["String theory", "Broken supersymmetry", "Holographic theory"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Manichaean text describes an extremely complex dualist cosmogonic myth?",
+    "correctAnswer": "Kephalaia",
+    "incorrectAnswers": ["Book of Giants", "Book of Ardā Wīrāz", "Cathar Homilies"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which paradox states that continuous motion is impossible because it requires completing an infinite number of steps?",
+    "correctAnswer": "Zeno's dichotomy paradox",
+    "incorrectAnswers": ["Thomson's paradox", "Grünbaum's paradox", "Russell's paradox"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which precursor alphabet of Etruscan is attested in rare 8th-century BCE Italian inscriptions?",
+    "correctAnswer": "North Italic alphabet",
+    "incorrectAnswers": ["Camunian alphabet", "Lemnos alphabet", "Villanovan alphabet"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the holographic model, where is the information of a region of space 'encoded'?",
+    "correctAnswer": "On the 2D boundary",
+    "incorrectAnswers": ["On a 3D hypersurface", "On an M2 membrane", "On a Calabi–Yau manifold"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which apocryphal text describes a vision of Enoch traveling through the 'seven heavens'?",
+    "correctAnswer": "3 Enoch",
+    "incorrectAnswers": ["1 Enoch", "Slavonic Enoch", "Apocalypse of Elijah"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which reversible quantum process converts one photon into two entangled photons?",
+    "correctAnswer": "Parametric down-conversion",
+    "incorrectAnswers": ["Photoelectric effect", "Inverse Compton scattering", "Spin–torsion conversion"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Syro-Anatolian artifact bears the oldest known example of Canaanite alphabetic writing?",
+    "correctAnswer": "Serabit el-Khadim tablet",
+    "incorrectAnswers": ["Byblos dagger", "Lachish ostracon", "Wadi el-Hol alphabet"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which statistical paradox shows that an individualized choice can reverse overall global trends?",
+    "correctAnswer": "Simpson's paradox",
+    "incorrectAnswers": ["Monty Hall paradox", "Parrondo's paradox", "Anscombe's paradox"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which radical cosmological hypothesis considers the Universe as a hologram emerging from a 4D black hole?",
+    "correctAnswer": "Black Hole Cosmology",
+    "incorrectAnswers": ["Verlinde's hypothesis", "Holographic Universe cosmology", "Maldacena conjecture"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Coptic manuscript describes esoteric teachings given privately by Jesus to his disciples after the resurrection?",
+    "correctAnswer": "Sophia of Jesus Christ",
+    "incorrectAnswers": ["Treatise on the Resurrection", "Dialogue of the Savior", "Gospel according to the Hebrews"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which mathematical object is a totally disconnected, compact, perfect space?",
+    "correctAnswer": "Cantor set",
+    "incorrectAnswers": ["Julia set", "Vitali set", "Sierpiński set"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which late Mesopotamian artifact contains one of the oldest known trigonometric tables?",
+    "correctAnswer": "Plimpton 322",
+    "incorrectAnswers": ["YBC 7289", "UM 29-13-21 tablet", "LBAT 1312 tablet"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the context of non-well-founded set theory (Aczel's Anti-Foundation Axiom), which structure is permitted that is forbidden in ZFC?",
+    "correctAnswer": "A set containing itself as a member",
+    "incorrectAnswers": ["A set containing an uncountable ordinal", "A set with no transitive closure", "A set with inconsistent cardinality"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The hypothetical 'Boltzmann Brain problem' emerges fundamentally from which property of thermodynamic systems in cosmology?",
+    "correctAnswer": "Entropy fluctuations in equilibrium",
+    "incorrectAnswers": ["Negative heat capacity", "Vacuum metastability", "Quantum tunneling across horizons"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Tartaria tablets (Romania, ~5300 BCE) are sometimes claimed as early proto-writing. Which sign is most often cited as proof of a numerical system?",
+    "correctAnswer": "The repeated vertical notches",
+    "incorrectAnswers": ["The double-hatched cross", "The chevron sequence", "The spiral–sun motif"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Apocalypse of Zephaniah, what unique cosmological element distinguishes it from canonical apocalyptic literature?",
+    "correctAnswer": "A liminal river of souls between Sheol and Paradise",
+    "incorrectAnswers": ["A heaven guarded by triple Cherubim seals", "An angelic tribunal that judges angels, not humans", "A depiction of the 'Fiery Sea' imprisoning rulers"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In loop quantum gravity, the area operator has a discrete spectrum proportional to what mathematical object?",
+    "correctAnswer": "Spin network labels",
+    "incorrectAnswers": ["Chebyshev polynomials", "Jacobi theta functions", "Zeta regularized eigenvalues"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The 'bootstrap paradox' implies what about causation loops?",
+    "correctAnswer": "They create information with no point of origin",
+    "incorrectAnswers": ["They require an external trigger outside spacetime", "They erase all causal determinacy", "They violate local realism but preserve global consistency"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The hypothesized Dene-Caucasian macrofamily proposes a link between which two distant language groups?",
+    "correctAnswer": "Sino-Tibetan and Na-Dene",
+    "incorrectAnswers": ["Basque and Mongolic", "Kartvelian and Ainu", "Dravidian and Eskimo-Aleut"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In category theory, a 'strange loop' comparable to Hofstadter's arises naturally in which construction?",
+    "correctAnswer": "Endofunctor fixed points",
+    "incorrectAnswers": ["Yoneda embedding", "Kan fibrations", "Cartesian closed categories"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The 'Ubaid lizard figurines' (Iraq, ~4500 BCE) are primarily associated with which archaeological site?",
+    "correctAnswer": "Tell al-Ubaid",
+    "incorrectAnswers": ["Tell Brak", "Eridu", "Uqair"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Casimir effect arises from fluctuations in which part of the quantum field?",
+    "correctAnswer": "Zero-point vacuum energy",
+    "incorrectAnswers": ["Tachyonic mass states", "Higher-order virtual bosons", "Anisotropic graviton background"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Infancy Gospel of Thomas, which unusual miracle is attributed to Jesus as a child?",
+    "correctAnswer": "Animating clay birds into living ones",
+    "incorrectAnswers": ["Turning sand into bread", "Descending into Sheol", "Making the sun stand still"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Gödel's incompleteness theorems apply to systems that are:",
+    "correctAnswer": "Effectively axiomatizable, consistent, and expressive enough for arithmetic",
+    "incorrectAnswers": ["Finitely axiomatizable, inconsistent, and complete", "Uncountable, decidable, and intuitionistic", "Recursive but model-dependent"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The earliest confirmed alphabetic inscriptions (Wadi el-Hol) show signs of derivation from which system?",
+    "correctAnswer": "Egyptian hieroglyphs",
+    "incorrectAnswers": ["Minoan Linear A", "Old Akkadian syllabary", "Proto-Elamite"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In modal realism (David Lewis), what defines a 'possible world'?",
+    "correctAnswer": "A maximally complete and isolated spatiotemporal system",
+    "incorrectAnswers": ["A universe with mathematically consistent physics", "A causal continuum branching from quantum superposition", "A simulation in the Platonic realm"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The 'Nabta Playa' stone circle in Egypt aligns most strongly with what?",
+    "correctAnswer": "The heliacal rising of Sirius",
+    "incorrectAnswers": ["Solstice sunrise", "Orion's belt", "Lunar standstill"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Pusey-Barrett-Rudolph (PBR) theorem argues what about the wavefunction?",
+    "correctAnswer": "It must correspond to physical reality",
+    "incorrectAnswers": ["It must be purely epistemic", "It forbids superpositions beyond two particles", "It implies quantum nonlocality is impossible"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "4QMMT is most notable for discussing what central issue?",
+    "correctAnswer": "The purity laws",
+    "incorrectAnswers": ["The divine throne vision", "Cosmological speculation", "The angelic hierarchy"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Russell's paradox arises from assuming:",
+    "correctAnswer": "Any predicate defines a set",
+    "incorrectAnswers": ["Sets can have infinite cardinality", "Sets can be enumerated by ordinals", "Sets can be members of multiple universes"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Phaistos Disc's glyph 02 (the 'plumed head') is generally classified as what?",
+    "correctAnswer": "A phonetic ideogram",
+    "incorrectAnswers": ["A deity marker", "A warrior determinative", "An agricultural symbol"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Proto-Indo-European laryngeals were first hypothesized due to irregularities observed in which branch?",
+    "correctAnswer": "Greek",
+    "incorrectAnswers": ["Indo-Iranian", "Anatolian", "Balto-Slavic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Tachyons violate which physical principle if treated as real particles?",
+    "correctAnswer": "Local causality",
+    "incorrectAnswers": ["CPT symmetry", "Lorentz invariance", "Gauge symmetry"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Odes of Solomon uniquely emphasize which theological symbol?",
+    "correctAnswer": "The Living Fountain",
+    "incorrectAnswers": ["The Tree of Knowledge", "The Fiery Wheel", "The Invisible Church"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Sorites paradox concerns the vagueness in which property?",
+    "correctAnswer": "Quantity",
+    "incorrectAnswers": ["Identity", "Continuity", "Category membership"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The megalithic site of Göbekli Tepe contains T-shaped pillars that feature which recurring animal?",
+    "correctAnswer": "Vulture",
+    "incorrectAnswers": ["Frog", "Lynx", "Dolphin"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Large cardinal axioms posit the existence of cardinals with properties not provable in ZFC. Which is the weakest commonly discussed?",
+    "correctAnswer": "Inaccessible cardinal",
+    "incorrectAnswers": ["Supercompact cardinal", "Reinhardt cardinal", "Woodin cardinal"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Gospel of Judas, who is identified as aiding Jesus by releasing his spiritual self?",
+    "correctAnswer": "Judas Iscariot",
+    "incorrectAnswers": ["Thomas", "Mary Magdalene", "James the Just"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Byblos syllabary shows structural affinity with which script?",
+    "correctAnswer": "Cypro-Minoan",
+    "incorrectAnswers": ["Proto-Canaanite", "Ugaritic", "Hieratic"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In linear logic, which rule is omitted compared to classical logic?",
+    "correctAnswer": "Contraction",
+    "incorrectAnswers": ["Double negation", "Modus ponens", "Identity"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The 'axis of evil' anomaly refers to unexpected alignment in what?",
+    "correctAnswer": "CMB multipoles",
+    "incorrectAnswers": ["Gravitational wave background", "Cosmic ray distribution", "Quasar redshift pattern"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Sumerian goddess Nanshe was primarily associated with what?",
+    "correctAnswer": "Fishing and justice",
+    "incorrectAnswers": ["Fertility", "Warfare", "Storms"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The halting problem proves that computation is...",
+    "correctAnswer": "Undecidable for Turing-complete systems",
+    "incorrectAnswers": ["Indecidable in all infinite-state systems", "Decidable for systems using higher-order logic", "Independent of Church–Turing thesis"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Linear A sign A-KA is most commonly interpreted as what?",
+    "correctAnswer": "A syllable 'ka'",
+    "incorrectAnswers": ["'Lord'", "A grain measure", "A place name element"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Zeno's 'Arrow paradox' argues that motion is impossible because...",
+    "correctAnswer": "At each instant, the arrow is motionless",
+    "incorrectAnswers": ["The arrow occupies infinite positions", "Time is made of indivisible atoms", "Space is infinitely divisible"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Higgs mechanism imparts mass through interaction with what field property?",
+    "correctAnswer": "Nonzero vacuum expectation value",
+    "incorrectAnswers": ["Vacuum anisotropy", "Gauge phase rotation", "Lepton parity"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Sethian cosmology, the being Sophia creates the Demiurge through...",
+    "correctAnswer": "A fall from the Pleroma",
+    "incorrectAnswers": ["A word of power", "A ritual sacrifice", "Direct emanation from the Monad"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The reconstructed Proto-Sumerian lexicon is based primarily on what method?",
+    "correctAnswer": "Internal reconstruction",
+    "incorrectAnswers": ["Comparison with Elamite", "Numerological analysis", "Root sound symbolism"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The 'information paradox' for black holes arises because Hawking radiation appears to be...",
+    "correctAnswer": "Random and uncorrelated",
+    "incorrectAnswers": ["Completely classical", "Non-thermal", "Faster-than-light in origin"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Sefer Yetzirah describes creation through:",
+    "correctAnswer": "The 10 sefirot and 22 Hebrew letters",
+    "incorrectAnswers": ["The descent of the Shekhinah", "The emanations of Adam Kadmon", "The four worlds of Atziluth"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Calabi–Yau manifolds are required in string theory because they preserve what?",
+    "correctAnswer": "Supersymmetry in compactification",
+    "incorrectAnswers": ["Poincaré duality", "Gauge invariance", "Lorentz covariance"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Corpus Hermeticum, the Nous is defined as...",
+    "correctAnswer": "The supreme creative intellect",
+    "incorrectAnswers": ["The cosmic serpent of cycles", "The divine child of the demiurge", "The principle of ecstatic prophecy"]
+  }
+]
