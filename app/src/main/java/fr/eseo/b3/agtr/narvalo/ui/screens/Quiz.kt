@@ -78,10 +78,10 @@ fun QuizScreen(
         Difficulty.EMILIEN -> 100    }
 
     val musicUrls = mapOf(
-        Difficulty.FACILE to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        Difficulty.MOYEN to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
-        Difficulty.DIFFICILE to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3",
-        Difficulty.EMILIEN to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1"
+        Difficulty.FACILE to "https://raw.githubusercontent.com/BlackHoleMaster/Narvalo/master/app/src/main/res/raw/c418.mp3",
+        Difficulty.MOYEN to "https://raw.githubusercontent.com/BlackHoleMaster/Narvalo/master/app/src/main/res/raw/nightcity.mp3",
+        Difficulty.DIFFICILE to "https://raw.githubusercontent.com/BlackHoleMaster/Narvalo/master/app/src/main/res/raw/soulofcinder.mp3",
+        Difficulty.EMILIEN to "https://raw.githubusercontent.com/BlackHoleMaster/Narvalo/master/app/src/main/res/raw/the_only_thing_they_fear_is_you.mp3"
     )
 
     // Wrap the whole quiz in a key that includes uiRefreshKey so we can force a full recomposition
@@ -100,11 +100,11 @@ fun QuizScreen(
         }
         LaunchedEffect(selectedDifficulty, isPlaying) {
             if (isPlaying) {
-                // We recover the resource ID of the local music
-                val resId = musicUrls[selectedDifficulty]
-                if (resId != null) {
-                    // We call the method for the LOCAL music
-                    musicPlayerManager.playLocalMusic(resId, isLooping = true)
+                // We recover the music URL
+                val url = musicUrls[selectedDifficulty]
+                if (url != null) {
+                    // We call the method for streaming music
+                    musicPlayerManager.playStreamingMusic(url, isLooping = true)
                 }
             } else {
                 //  If the music is disabled, we stop it
