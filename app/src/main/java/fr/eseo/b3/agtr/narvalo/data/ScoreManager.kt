@@ -21,18 +21,14 @@ class ScoreManager(context: Context) {
         private const val KEY_SCORES = "scores_data"
     }
 
-    /**
-     * Sauvegarde les scores dans un fichier JSON
-     */
+    // Save scores to JSON file
     fun saveScores(highScore: Int, lastScore: Int) {
         val scoreData = ScoreData(highScore, lastScore)
         val json = gson.toJson(scoreData)
         prefs.edit().putString(KEY_SCORES, json).apply()
     }
 
-    /**
-     * Récupère les scores depuis le fichier JSON
-     */
+    // Get scores from JSON file
     fun loadScores(): ScoreData {
         val json = prefs.getString(KEY_SCORES, null)
         return if (json != null) {
@@ -46,32 +42,24 @@ class ScoreManager(context: Context) {
         }
     }
 
-    /**
-     * Met à jour uniquement le dernier score
-     */
+    // Update only the last score and adjust high score if needed
     fun updateLastScore(score: Int) {
         val currentScores = loadScores()
         val newHighScore = maxOf(currentScores.highScore, score)
         saveScores(newHighScore, score)
     }
 
-    /**
-     * Récupère uniquement le high score
-     */
+    // Get only the high score
     fun getHighScore(): Int {
         return loadScores().highScore
     }
 
-    /**
-     * Récupère uniquement le last score
-     */
+    // Get only the last score
     fun getLastScore(): Int {
         return loadScores().lastScore
     }
 
-    /**
-     * Réinitialise tous les scores
-     */
+    // Reset scores to zero
     fun resetScores() {
         saveScores(0, 0)
     }
