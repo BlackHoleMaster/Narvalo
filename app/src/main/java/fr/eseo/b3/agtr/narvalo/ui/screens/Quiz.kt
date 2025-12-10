@@ -70,7 +70,7 @@ fun QuizScreen(
     // A simple key to force full UI recomposition when switching difficulty (useful for EMILIEN)
     var uiRefreshKey by remember { mutableStateOf(0) }
 
-    // Calculer le multiplicateur de difficulté
+    // Calcul the difficulty multiplier
     val difficultyMultiplier = when (selectedDifficulty) {
         Difficulty.FACILE -> 1
         Difficulty.MOYEN -> 3
@@ -190,7 +190,7 @@ fun QuizScreen(
 
                             Spacer(modifier = Modifier.height(24.dp))
 
-                            // Compteur de questions et score
+                            // Counter of questions and score
                             Column(
                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                 horizontalAlignment = Alignment.CenterHorizontally
@@ -657,7 +657,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Number of right answers
+            // Numbre of right answers
             Surface(
                 color = Color(0xFF4CAF50).copy(alpha = 0.2f),
                 shape = RoundedCornerShape(12.dp)
@@ -673,7 +673,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Button Restart
+            //  Restart Button
             Button(
                 onClick = onRestart,
                 modifier = Modifier
@@ -688,8 +688,8 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Bouton Menu
-            OutlinedButton(
+            //  Menu Button
+             OutlinedButton(
                 onClick = onBackToHome,
                 modifier = Modifier
                     .fillMaxWidth()
