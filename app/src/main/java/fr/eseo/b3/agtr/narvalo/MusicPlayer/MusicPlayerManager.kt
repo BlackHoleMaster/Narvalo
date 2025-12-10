@@ -41,7 +41,7 @@ class MusicPlayerManager(private val context: Context) {
                     mediaPlayer?.setVolume(0.3f, 0.3f)
                 }
             }
-            //  We rescover the focus audio -> we retake the player and the standard volume
+            //  We recover the focus audio -> we retake the player and the standard volume
             AudioManager.AUDIOFOCUS_GAIN -> {
                 Log.d("MusicPlayerManager", "Focus audio regagné. Reprise de la lecture.")
                 mediaPlayer?.setVolume(1.0f, 1.0f)
@@ -55,7 +55,7 @@ class MusicPlayerManager(private val context: Context) {
         AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
             .setAudioAttributes(
                 AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME) // Import for specify the type of audio
+                    .setUsage(AudioAttributes.USAGE_GAME) // Import specific type of audio
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .build()
             )
@@ -76,7 +76,7 @@ class MusicPlayerManager(private val context: Context) {
         val focusResult = requestAudioFocus()
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             Log.w("MusicPlayerManager", "La demande de focus audio a échoué.")
-            return // Si on n'a pas le focus, on ne joue pas la musique
+            return
         }
         // --- End of the focus request ---
 
@@ -108,7 +108,7 @@ class MusicPlayerManager(private val context: Context) {
     }
 
     fun release() {
-        stop() // stop() abondon when the focus
+        stop() // stop() abandon when the focus
     }
 
     private fun requestAudioFocus(): Int {

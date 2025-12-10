@@ -1,6 +1,5 @@
 package fr.eseo.b3.agtr.narvalo.ui.screens
 
-import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -161,7 +159,7 @@ fun QuizScreen(
                         var selectedAnswer by remember(currentQuestionIndex) { mutableStateOf<String?>(null) }
                         var hasAnswered by remember(currentQuestionIndex) { mutableStateOf(false) }
 
-                        // To pass automaticly to the next question after a delay
+                        // To pass automatically to the next question after a delay
                         LaunchedEffect(hasAnswered) {
                             if (hasAnswered) {
                                 delay(1000)
@@ -208,7 +206,7 @@ fun QuizScreen(
 
                             Spacer(modifier = Modifier.height(24.dp))
 
-                        // Area question
+                        // Question area
                         QuestionBox(
                             question = currentQuestion.question
                         )
@@ -371,7 +369,7 @@ fun DifficultyBar(
             )
         }
     }
-    if (score >= 3000) {//  Disable if score is less than 5000
+    if (score >= 3000) {//  Disable if score less than 5000
         Row(
             modifier = modifier
                 .fillMaxWidth()
@@ -411,7 +409,7 @@ fun DifficultyButton(
             disabledContentColor = Color.Black.copy(alpha = 0.5f)
         ),
         // Use rectangle shape when inside rounded container, rounded when standalone
-        shape = if (useRoundedShape) RoundedCornerShape(12.dp) else androidx.compose.ui.graphics.RectangleShape
+        shape = if (useRoundedShape) RoundedCornerShape(12.dp) else RectangleShape
     ) {
         Text(
             text = text,
@@ -659,7 +657,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Numbre of right answers
+            // Number of right answers
             Surface(
                 color = Color(0xFF4CAF50).copy(alpha = 0.2f),
                 shape = RoundedCornerShape(12.dp)
