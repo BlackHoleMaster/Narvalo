@@ -23,10 +23,10 @@ class MainActivity : ComponentActivity() {
             val musicPlayerManager = remember { MusicPlayerManager(context) }
             val scoreManager = remember { ScoreManager(context) }
 
-            // Charger les scores sauvegardés au démarrage
+            // Load the saved scores at startup
             val savedScores = remember { scoreManager.loadScores() }
 
-            // État pour la navigation
+            // State for the navigation
             var currentScreen by remember { mutableStateOf("home") }
             var highScore by remember { mutableStateOf(savedScores.highScore) }
             var lastScore by remember { mutableStateOf(savedScores.lastScore) }
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                                 if (score > highScore) {
                                     highScore = score
                                 }
-                                // Sauvegarder les scores dans le JSON
+                                // Save the scores in the JSON
                                 scoreManager.saveScores(highScore, lastScore)
                                 currentScreen = "home"
                             }

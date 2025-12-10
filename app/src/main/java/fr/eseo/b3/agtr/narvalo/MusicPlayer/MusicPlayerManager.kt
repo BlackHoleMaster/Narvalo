@@ -19,31 +19,29 @@ class MusicPlayerManager(private val context: Context) {
 
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-    // ✅ 2. Créer un listener pour les changements de focus audio
+    // Create a listener for audio focus changes
     private val focusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
         when (focusChange) {
-            // Focus perdu de manière permanente (ex: une autre app de musique se lance)
+            // Focus lost permanently
             AudioManager.AUDIOFOCUS_LOSS -> {
                 Log.d("MusicPlayerManager", "Focus audio perdu définitivement. Arrêt de la musique.")
-                // On ne peut pas appeler stop() directement ici si QuizScreen doit mettre à jour son UI.
-                // Pour l'instant, on arrête la lecture.
                 mediaPlayer?.stop()
             }
-            // Focus perdu temporairement (ex: appel entrant) -> on met en pause
+            // Focus lost temporarily
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
                 if (isPlaying) {
                     Log.d("MusicPlayerManager", "Focus audio perdu temporairement. Mise en pause.")
                     mediaPlayer?.pause()
                 }
             }
-            // Focus perdu temporairement, mais on peut continuer à jouer à bas volume (ex: notification)
+            // Focus lost temporarily but we can continue to play at lower volume
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
                 if (isPlaying) {
                     Log.d("MusicPlayerManager", "Duck: réduction du volume.")
                     mediaPlayer?.setVolume(0.3f, 0.3f)
                 }
             }
-            // On a (re)gagné le focus audio -> on reprend la lecture et on remet le volume normal
+            //  We rescover the focus audio -> we retake the player and the standard volume
             AudioManager.AUDIOFOCUS_GAIN -> {
                 Log.d("MusicPlayerManager", "Focus audio regagné. Reprise de la lecture.")
                 mediaPlayer?.setVolume(1.0f, 1.0f)
@@ -52,12 +50,12 @@ class MusicPlayerManager(private val context: Context) {
         }
     }
 
-    // ✅ 3. Créer la requête de focus audio (pour Android 8.0+ et versions ultérieures)
+    //  Create the request for audio focus
     private val focusRequest = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
             .setAudioAttributes(
                 AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME) // Important pour spécifier le type d'audio
+                    .setUsage(AudioAttributes.USAGE_GAME) // Import for specify the type of audio
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .build()
             )
@@ -68,19 +66,19 @@ class MusicPlayerManager(private val context: Context) {
     }
 
 
-    // ✅ 4. Modifier la méthode playLocalMusic pour demander le focus
+    //  Modify the playLocalMusic method to request focus
     fun playLocalMusic(resId: Int, isLooping: Boolean = true) {
         if (isPlaying && resId == currentResId) {
             return
         }
 
-        // --- Demande de focus audio ---
+        // ---  Request the focus audio ---
         val focusResult = requestAudioFocus()
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             Log.w("MusicPlayerManager", "La demande de focus audio a échoué.")
             return // Si on n'a pas le focus, on ne joue pas la musique
         }
-        // --- Fin de la demande de focus ---
+        // --- End of the focus request ---
 
         stop()
         currentResId = resId
@@ -96,7 +94,7 @@ class MusicPlayerManager(private val context: Context) {
     }
 
 
-    // ✅ 5. Modifier la méthode stop() pour abandonner le focus
+    // 5.  Modify the stop() method to abandon focus
     fun stop() {
         if (mediaPlayer == null) return
 
@@ -105,12 +103,12 @@ class MusicPlayerManager(private val context: Context) {
         mediaPlayer = null
         currentResId = null
 
-        // --- Abandon du focus audio ---
+        // --- Abandon of focus audio---
         abandonAudioFocus()
     }
 
     fun release() {
-        stop() // stop() abandonne déjà le focus
+        stop() // stop() abondon when the focus
     }
 
     private fun requestAudioFocus(): Int {

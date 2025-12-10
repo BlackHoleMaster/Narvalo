@@ -89,7 +89,7 @@ fun QuizScreen(
     // Wrap the whole quiz in a key that includes uiRefreshKey so we can force a full recomposition
     key(selectedDifficulty, uiRefreshKey) {
 
-        // Charger les questions au démarrage
+        // Load the questions when the screen starts
         LaunchedEffect(selectedDifficulty) {
             val difficulty = when (selectedDifficulty) {
                 Difficulty.FACILE -> "easy"
@@ -102,14 +102,14 @@ fun QuizScreen(
         }
         LaunchedEffect(selectedDifficulty, isPlaying) {
             if (isPlaying) {
-                // On récupère l'identifiant de la ressource musicale locale
+                // We recover the resource ID of the local music
                 val resId = musicUrls[selectedDifficulty]
                 if (resId != null) {
-                    // On appelle la méthode pour la musique LOCALE
+                    // We call the method for the LOCAL music
                     musicPlayerManager.playLocalMusic(resId, isLooping = true)
                 }
             } else {
-                // Si la musique est désactivée, on l'arrête
+                //  If the music is disabled, we stop it
                 musicPlayerManager.stop()
             }
         }
@@ -117,7 +117,7 @@ fun QuizScreen(
         Box(
             modifier = modifier.fillMaxSize()
         ) {
-            // Image de fond
+            //  Wallpaper
             Image(
                 painter = painterResource(id = R.drawable.background_quiz),
                 contentDescription = "Background",
@@ -161,7 +161,7 @@ fun QuizScreen(
                         var selectedAnswer by remember(currentQuestionIndex) { mutableStateOf<String?>(null) }
                         var hasAnswered by remember(currentQuestionIndex) { mutableStateOf(false) }
 
-                        // Passer automatiquement à la question suivante après un délai
+                        // To pass automaticly to the next question after a delay
                         LaunchedEffect(hasAnswered) {
                             if (hasAnswered) {
                                 delay(1000)
@@ -175,7 +175,7 @@ fun QuizScreen(
                                 .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 80.dp),
                             verticalArrangement = Arrangement.SpaceBetween
                         ) {
-                            // Barre de difficulté (F, M, D)
+                            // Navbar of difficulty (F, M, D)
                             DifficultyBar(
                                 score = highScore,
                                 selectedDifficulty = selectedDifficulty,
@@ -208,14 +208,14 @@ fun QuizScreen(
 
                             Spacer(modifier = Modifier.height(24.dp))
 
-                        // Zone de question
+                        // Area question
                         QuestionBox(
                             question = currentQuestion.question
                         )
 
                             Spacer(modifier = Modifier.height(24.dp))
 
-                            // Boutons de réponse
+                            // Button answer
                             AnswersGrid(
                                 answers = answers,
                                 correctAnswer = currentQuestion.correctAnswer,
@@ -231,14 +231,16 @@ fun QuizScreen(
                             )
                         }
                     } else {
-                        // Mise à jour du high score / last score lorsque le quiz est terminé
+                        // Update the last score / high score when the quiz finished
                         LaunchedEffect(key1 = score) {
-                            // Mettre à jour le dernier score et le high score dans ScoreManager
+                            // Update the last score and high score in ScoreManager
+
                             scoreManager.updateLastScore(score)
-                            // Lire la nouvelle valeur de high score
+                            //  Read the new high score from ScoreManager
+
                             highScore = scoreManager.getHighScore()
                         }
-                        // Écran de fin de quiz
+                        // Screen ending for the quiz
                         QuizEndScreen(
                             score = score,
                             correctAnswers = correctAnswersCount,
@@ -264,10 +266,11 @@ fun QuizScreen(
                 }
             }
 
-            // Bouton de contrôle de musique en bas à droite
+            //  Button of control of music at the bottom right
+
             MusicToggleButton(
                 isMusicEnabled = isPlaying,
-                onToggle = { isPlaying = !isPlaying }, // On change l'état 'isPlaying'
+                onToggle = { isPlaying = !isPlaying }, //  We change the state 'isPlaying'
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(16.dp)
@@ -368,7 +371,7 @@ fun DifficultyBar(
             )
         }
     }
-    if (score >= 3000) {// Désactivé si le score est inférieur à 5000
+    if (score >= 3000) {//  Disable if score is less than 5000
         Row(
             modifier = modifier
                 .fillMaxWidth()
@@ -462,7 +465,7 @@ fun AnswersGrid(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Première ligne avec 2 boutons
+        // First line with 2 buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -486,7 +489,7 @@ fun AnswersGrid(
             )
         }
 
-        // Deuxième ligne avec 2 boutons
+        // Second line with 2 buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -639,7 +642,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Score en points
+            // Score
             Text(
                 text = "Votre score",
                 fontSize = 24.sp
@@ -656,7 +659,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Nombre de bonnes réponses
+            // Numbre of right answers
             Surface(
                 color = Color(0xFF4CAF50).copy(alpha = 0.2f),
                 shape = RoundedCornerShape(12.dp)
@@ -672,7 +675,7 @@ fun QuizEndScreen(
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Bouton Recommencer
+            // Button Restart
             Button(
                 onClick = onRestart,
                 modifier = Modifier
