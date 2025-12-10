@@ -78,10 +78,10 @@ fun QuizScreen(
         Difficulty.EMILIEN -> 100    }
 
     val musicUrls = mapOf(
-        Difficulty.FACILE to R.raw.c418,
-        Difficulty.MOYEN to R.raw.nightcity,
-        Difficulty.DIFFICILE to R.raw.soulofcinder,
-        Difficulty.EMILIEN to R.raw.the_only_thing_they_fear_is_you
+        Difficulty.FACILE to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        Difficulty.MOYEN to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+        Difficulty.DIFFICILE to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3",
+        Difficulty.EMILIEN to "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1"
     )
 
     // Wrap the whole quiz in a key that includes uiRefreshKey so we can force a full recomposition
